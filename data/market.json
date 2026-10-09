@@ -1,0 +1,1197 @@
+{
+ "updated": "2026-10-08",
+ "cycle": "2026-10",
+ "headline": "글로벌 건설기계 시장은 2025년 저점을 지나 2026년 완만한 회복 국면. 중국 굴착기(수출 주도)·북미·중남미·아프리카는 강세, 인도·중동·인도네시아 광산은 조정.",
+ "kpis": [
+  {
+   "label": "중국 굴착기 판매 (1~8월)",
+   "value": "191,557대",
+   "delta": "+24.2%",
+   "dir": "up",
+   "note": "수출 96,938대(+31.8%) > 내수 94,619대(+17.4%)",
+   "source": "CCMA / SteelOrbis 2026-09-09"
+  },
+  {
+   "label": "인도 건설기계 판매 (FY26)",
+   "value": "136,995대",
+   "delta": "-2%",
+   "dir": "down",
+   "note": "내수 -7%, 수출 +32% 사상 최대",
+   "source": "ICEMA / NBM&CW"
+  },
+  {
+   "label": "유럽 건설기계 판매 (2025)",
+   "value": "+4.6%",
+   "delta": "2026F +2~2.5%",
+   "dir": "up",
+   "note": "토목·인프라 +3%, 주거 부진",
+   "source": "CECE Annual Economic Report 2026"
+  },
+  {
+   "label": "코마츠 글로벌 수요 (7대 기종, FY26 가이던스)",
+   "value": "0 ~ +5%",
+   "delta": "4월 전망 0~-5%에서 상향",
+   "dir": "up",
+   "note": "광산장비는 -5~-10%",
+   "source": "Komatsu FY2026 Q1 (2026-07-29)"
+  },
+  {
+   "label": "글로벌 장비 판매 (대수)",
+   "value": "2025F -2%",
+   "delta": "2026~ 연 ~2% CAGR",
+   "dir": "flat",
+   "note": "2021년 피크 136만대, 2030년대 초 피크 재돌파 전망",
+   "source": "Off-Highway Research (Power Progress, 2025-12)"
+  },
+  {
+   "label": "유압 어태치먼트(해체용) 시장",
+   "value": "$4.1B → $7.1B",
+   "delta": "CAGR 5.6% (2024~33)",
+   "dir": "up",
+   "note": "브레이커 비중 50%+, 유럽 1/3, 아태 최고 성장(6.8%)",
+   "source": "Allied Market Research (openPR 2026)"
+  }
+ ],
+ "regions": [
+  {
+   "region": "북미",
+   "signal": "강세",
+   "evidence": "Cat 건설부문 북미 +50% (2Q26), 코마츠 NA 수요 +14~21% (4~7월), Volvo CE NA 매출 +25%. 데이터센터·에너지 인프라·리쇼어링. 관세(232조)로 수입 장비 가격 상승 리스크.",
+   "ko_relevance": "두산밥캣 북미 비중 70%+, 멕시코 공장 가동"
+  },
+  {
+   "region": "유럽",
+   "signal": "완만 회복",
+   "evidence": "CECE 2025 +4.6%, 2026F +2~2.5%. 코마츠 유럽 수요 +3~23%. Volvo CE 유럽 +23%. 주거 부진·인프라 견조. 해체·재활용 어태치먼트 성장.",
+   "ko_relevance": "브레이커 최대 시장(유럽 1/3), 두산밥캣 EMEA +18%"
+  },
+  {
+   "region": "중국",
+   "signal": "회복 (수출 주도)",
+   "evidence": "굴착기 1~8월 +24.2%, 8월 +19.3%. 전동 휠로더가 1~2년 내 디젤 추월 전망. Sany 해외비중 60%+. 환손실로 순이익 압박.",
+   "ko_relevance": "중국 OEM의 신흥국 저가 공세 지속"
+  },
+  {
+   "region": "인도",
+   "signal": "조정 후 회복",
+   "evidence": "FY26 -2% (내수 -7%), 수출 +32%. 2030년 세계 2위 시장 목표(ICEMA). HD건설기계 인도 +22.1%.",
+   "ko_relevance": "CEV-V 배출규제, 로컬 생산 요구"
+  },
+  {
+   "region": "중남미",
+   "signal": "강세 (광산)",
+   "evidence": "코마츠 LatAm 수요 +40~54%, 매출 +37%. Hitachi 중남미 2배. HD건설기계 중남미 +29.9%. 브라질·콜롬비아·페루 광산·인프라.",
+   "ko_relevance": "광산용 대형 브레이커·DTH 드릴 수요"
+  },
+  {
+   "region": "중동·아프리카",
+   "signal": "혼조",
+   "evidence": "코마츠 중동 -8~-35%(사우디 프로젝트 조정), 아프리카 +20~56%. HD건설기계 중동·아프리카 +51.4% (금광). 에티오피아 120대, 몽골 광산 60대 수주 사례.",
+   "ko_relevance": "금광·인프라용 장비"
+  },
+  {
+   "region": "동남아",
+   "signal": "혼조",
+   "evidence": "인도네시아 UNTR 코마츠 판매 7M26 -23% (광산 -36%, 건설 +16%). 석탄 생산 조정. 베트남·태국 인프라 견조. Volvo CE: 인도네시아·한국·동남아 성장.",
+   "ko_relevance": "인도네시아 석탄 사이클 하강, 건설·농업 부문은 성장"
+  },
+  {
+   "region": "일본",
+   "signal": "부진",
+   "evidence": "2024 -9% (약 63,000대), 1~3년 침체 지속 전망. 코마츠 일본 수요 -11~-15% (7월 +8%).",
+   "ko_relevance": "자연 수요 수준 65,000대/년"
+  },
+  {
+   "region": "한국",
+   "signal": "회복",
+   "evidence": "HD건설기계 국내 +25% (신모델). 수산세보틱스 상반기 흑자, 190억 국책과제 수주.",
+   "ko_relevance": "자사 시장"
+  }
+ ],
+ "komatsu_demand": {
+  "title": "코마츠 7대 기종 수요 증감률 (전년 동월 대비, FY2026)",
+  "months": [
+   "4월",
+   "5월",
+   "6월",
+   "7월"
+  ],
+  "rows": [
+   {
+    "region": "중남미",
+    "v": [
+     43,
+     54,
+     44,
+     40
+    ]
+   },
+   {
+    "region": "아프리카",
+    "v": [
+     20,
+     37,
+     56,
+     41
+    ]
+   },
+   {
+    "region": "중국",
+    "v": [
+     34,
+     7,
+     41,
+     9
+    ]
+   },
+   {
+    "region": "오세아니아",
+    "v": [
+     19,
+     18,
+     20,
+     13
+    ]
+   },
+   {
+    "region": "북미",
+    "v": [
+     10,
+     21,
+     19,
+     14
+    ]
+   },
+   {
+    "region": "유럽",
+    "v": [
+     10,
+     3,
+     23,
+     13
+    ]
+   },
+   {
+    "region": "CIS",
+    "v": [
+     -9,
+     22,
+     28,
+     4
+    ]
+   },
+   {
+    "region": "아시아",
+    "v": [
+     5,
+     5,
+     11,
+     4
+    ]
+   },
+   {
+    "region": "일본",
+    "v": [
+     -15,
+     -11,
+     -11,
+     8
+    ]
+   },
+   {
+    "region": "중동",
+    "v": [
+     -22,
+     -35,
+     -6,
+     -8
+    ]
+   }
+  ],
+  "source": "Komatsu IR, Demand for 7 major products by region (FY2026)"
+ },
+ "products": [
+  {
+   "id": "AT_HB",
+   "group": "어태치먼트",
+   "name": "유압브레이커",
+   "own": true,
+   "market": "해체용 유압 어태치먼트 시장 $4.14B(2023) → $7.13B(2033), CAGR 5.6%. 브레이커/해머가 매출의 50% 이상. 유럽이 1/3로 최대, 아태가 6.8%로 최고 성장. 광산·채석 응용 6.2% CAGR, 폐기물·재활용 9.2% CAGR.",
+   "drivers": [
+    "도시 재개발·해체(유럽·한국·일본 노후 인프라)",
+    "광산·채석 2차 파쇄(중남미·아프리카 광산 호황)",
+    "굴착기 판매 회복(중국 수출 +31.8%, 북미 강세) → 1~2년 후행 어태치먼트 수요",
+    "전동·무소음 요구(도심 야간 작업, 전동 굴착기 보급)"
+   ],
+   "competitors": [
+    {
+     "n": "Epiroc (SB~HB 시리즈, 스웨덴 칼마르 생산)",
+     "src": "https://www.globalminingreview.com/mining/09092026/epiroc-inaugurates-expanded-manufacturing-facility-for-hydraulic-attachments-in-sweden/",
+     "checked": "2026-10-08"
+    },
+    {
+     "n": "Sandvik Rammer (유압 해머·펄버라이저·그래플·셰어)",
+     "src": "https://www.rammer.com/en/products/",
+     "checked": "2026-10-08"
+    },
+    {
+     "n": "Montabert / 코마츠 (브레이커 Compact~Heavy, 해체장비)",
+     "src": "https://www.montabert.com/en/products/",
+     "checked": "2026-10-08"
+    },
+    {
+     "n": "Furukawa Rock Drill (Fx·F6·F9·FHB 시리즈)",
+     "src": "https://www.furukawarockdrill.co.jp/en/products/",
+     "checked": "2026-10-08"
+    },
+    "NPK (일본) — 미검증",
+    "Indeco (이탈리아) — 미검증",
+    "Okada (일본) — 미검증",
+    "에버다임 (한국) — 미검증",
+    "대모엔지니어링 (한국) — 미검증"
+   ],
+   "ideas": [
+    "전동 굴착기 전용 저진동·저소음 브레이커 라인(유럽 도심 규제 대응)",
+    "원격·자동 그리스·타격 모니터링 텔레매틱스(애프터마켓 수익화: Hitachi 밸류체인 매출 48%)",
+    "광산용 70톤급 이상 초대형 브레이커 + 현지 서비스 패키지(중남미·아프리카)",
+    "그래플·펄버라이저 등 해체 어태치먼트 풀라인업(그래플 8.9% CAGR)"
+   ],
+   "indicators": [
+    "NE.GDI.FTOT.KD.ZG",
+    "NY.GDP.MINR.RT.ZS",
+    "SP.URB.GROW",
+    "NV.IND.TOTL.KD.ZG"
+   ]
+  },
+  {
+   "id": "HRD_TH",
+   "group": "유압드릴",
+   "name": "탑햄머 드릴 (크롤러 드릴)",
+   "own": true,
+   "market": "채석·토목 발파용. 골재·시멘트 수요와 인프라 토목(도로·터널) 투자에 연동. 광산 호황 지역(중남미·아프리카·호주)과 인프라 투자국(인도·동남아) 수요.",
+   "drivers": [
+    "골재·시멘트 소비(도로·철도 인프라)",
+    "터널·댐 공사(동남아·인도)",
+    "채석장 자동화·원격 운전"
+   ],
+   "competitors": [
+    {
+     "n": "Epiroc (SmartROC·FlexiROC·PowerROC T 시리즈)",
+     "src": "https://www.epiroc.com/en-us/products/drill-rigs/surface-drill-rigs",
+     "checked": "2026-10-08"
+    },
+    {
+     "n": "Sandvik (Pantera·Ranger·Dino·Commando)",
+     "src": "https://www.mining.sandvik/en/products/equipment/surface-drill-rigs/",
+     "checked": "2026-10-08"
+    },
+    {
+     "n": "Furukawa Rock Drill (유압 크롤러 드릴)",
+     "src": "https://www.furukawarockdrill.co.jp/en/products/",
+     "checked": "2026-10-08"
+    },
+    {
+     "n": "에버다임 (ECD·T450 탑햄머)",
+     "src": "https://www.directindustry.com/prod/everdigm/product-56764-959755.html",
+     "checked": "2026-10-08",
+     "note": "공식 홈페이지 접속 오류로 공식 카탈로그(DirectIndustry)로 확인"
+    },
+    {
+     "n": "Montabert (드리프터·천공 어태치먼트 공급, 완성 장비 아님)",
+     "src": "https://www.montabert.com/en/products/",
+     "checked": "2026-10-08"
+    }
+   ],
+   "ideas": [
+    "자동 로드체인저·GPS 천공 네비게이션(인력 부족 시장: 일본·유럽)",
+    "전동 크롤러 드릴(유럽 채석장 ESG)",
+    "인도·동남아 현지 조립(CKD)으로 가격 경쟁력 확보"
+   ],
+   "indicators": [
+    "NE.GDI.FTOT.KD.ZG",
+    "NY.GDP.MINR.RT.ZS",
+    "NY.GDP.TOTL.RT.ZS",
+    "NV.IND.TOTL.KD.ZG"
+   ]
+  },
+  {
+   "id": "HRD_DTH",
+   "group": "유압드릴",
+   "name": "다운더홀(DTH) 드릴",
+   "own": true,
+   "market": "광산·대형 채석·수자원(우물)·지열 천공. 광물 가격(금·구리·석탄)과 광산 CAPEX에 직접 연동. 코마츠 광산장비 수요 FY26 -5~-10% 전망이나 중남미·아프리카는 강세.",
+   "drivers": [
+    "금·구리 가격 및 광산 CAPEX",
+    "수자원·지열 개발(아프리카·동남아)",
+    "석탄 사이클(인도네시아 조정, 인도 견조)"
+   ],
+   "competitors": [
+    {
+     "n": "Epiroc (SmartROC·FlexiROC·PowerROC D 시리즈)",
+     "src": "https://www.epiroc.com/en-us/products/drill-rigs/surface-drill-rigs",
+     "checked": "2026-10-08"
+    },
+    {
+     "n": "Sandvik (Leopard DTH)",
+     "src": "https://www.mining.sandvik/en/products/equipment/surface-drill-rigs/",
+     "checked": "2026-10-08"
+    },
+    {
+     "n": "Furukawa Rock Drill (DTH 드릴)",
+     "src": "https://www.furukawarockdrill.co.jp/en/products/",
+     "checked": "2026-10-08"
+    },
+    {
+     "n": "에버다임 (D700 DTH)",
+     "src": "https://www.directindustry.com/prod/everdigm/product-56764-959755.html",
+     "checked": "2026-10-08",
+     "note": "공식 카탈로그(DirectIndustry)로 확인"
+    },
+    "한진디엔비 (DTH 크롤러 드릴, 홈페이지 접속 불가 — 미검증)",
+    "Mincon (DTH 해머·비트, 완성 장비 여부 미검증)"
+   ],
+   "ideas": [
+    "지열·수자원 천공 특화 DTH(아프리카·동남아 ODA 연계)",
+    "광산용 대구경 DTH + 비트 소모품 구독 모델"
+   ],
+   "indicators": [
+    "NY.GDP.MINR.RT.ZS",
+    "NY.GDP.TOTL.RT.ZS",
+    "NY.GDP.COAL.RT.ZS",
+    "NE.GDI.FTOT.KD.ZG"
+   ]
+  },
+  {
+   "id": "CEE_AC",
+   "group": "기타토목장비",
+   "name": "오거크레인 / 어스드릴",
+   "own": true,
+   "market": "전주 설치·기초 천공·송배전 인프라. 전력망 투자(데이터센터·재생에너지 계통연계)와 주택·건물 기초공사에 연동. 북미 전력 인프라 투자 급증이 기회.",
+   "drivers": [
+    "송배전망 투자(북미 데이터센터·에너지 전환)",
+    "주택 착공·기초공사",
+    "도시 개발(동남아·중동)"
+   ],
+   "competitors": [
+    "Soilmec — 미검증",
+    "Bauer — 미검증",
+    "Casagrande — 미검증",
+    "Nippon Sharyo — 미검증",
+    "Altec (전력 특장) — 미검증"
+   ],
+   "ideas": [
+    "배전 작업 일체형 오거크레인(북미 유틸리티 트럭 사양)",
+    "전동 PTO 저소음 사양(도심)"
+   ],
+   "indicators": [
+    "NE.GDI.FTOT.KD.ZG",
+    "SP.URB.GROW",
+    "BX.KLT.DINV.WD.GD.ZS"
+   ]
+  },
+  {
+   "id": "CEE_PAC",
+   "group": "기타토목장비",
+   "name": "이동식 공기압축기",
+   "own": true,
+   "market": "건설·광산·렌탈 수요. 북미 렌탈 시장과 동남아·중동 건설 현장 수요. 전동(배터리)·저소음 트렌드.",
+   "drivers": [
+    "렌탈사 CAPEX(북미·유럽)",
+    "인프라 공사량",
+    "배기규제(Stage V / Tier 4)"
+   ],
+   "competitors": [
+    "Atlas Copco — 미검증",
+    "Doosan Portable Power (두산밥캣) — 미검증",
+    "Sullair (Hitachi) — 미검증",
+    "Kaeser — 미검증",
+    "Airman (일본) — 미검증"
+   ],
+   "ideas": [
+    "배터리 전동 컴프레서(렌탈·도심)",
+    "브레이커·드릴 패키지 번들 판매"
+   ],
+   "indicators": [
+    "NE.GDI.FTOT.KD.ZG",
+    "NV.IND.TOTL.KD.ZG",
+    "FR.INR.LEND"
+   ]
+  },
+  {
+   "id": "CN",
+   "group": "크레인",
+   "name": "트럭 크레인 (직진식 / 굴절식)",
+   "own": true,
+   "market": "건설 자재 양중·물류·유틸리티. 신흥국 건설 붐(중동·동남아·인도)과 선진국 교체 수요. 자사 매출의 83%가 특수장비(크레인·고소작업대 등) 부문.",
+   "drivers": [
+    "건물·플랜트 착공(GFCF)",
+    "물류·유통 투자",
+    "도시 인프라(중동·동남아)"
+   ],
+   "competitors": [
+    "Tadano (일본) — 미검증",
+    "Palfinger (오스트리아) — 미검증",
+    "Hiab / Cargotec (핀란드) — 미검증",
+    "Fassi (이탈리아) — 미검증",
+    "강림 (한국) — 미검증",
+    "호룡 (한국) — 미검증",
+    "동양기전 (한국) — 미검증",
+    "XCMG·Sany·Zoomlion (중국) — 미검증"
+   ],
+   "ideas": [
+    "원격 조종·하중 모멘트 자동 제어 안전 패키지(선진국 규제)",
+    "전동 트럭 샤시 대응 e-PTO 크레인",
+    "중동·동남아 고온 사양·현지 서비스망"
+   ],
+   "indicators": [
+    "NE.GDI.FTOT.KD.ZG",
+    "NY.GDP.MKTP.KD.ZG",
+    "SP.URB.GROW",
+    "PA.NUS.FCRF"
+   ]
+  },
+  {
+   "id": "AWP",
+   "group": "고소작업대",
+   "name": "고소작업대 (직진식 / 굴절식 / 고하중리프트)",
+   "own": true,
+   "market": "글로벌 AWP 시장은 JLG·Genie·Haulotte와 중국(Zoomlion·Dingli·XCMG·Sinoboom)의 가격 경쟁 심화. 렌탈 중심(북미·유럽) 구조. 데이터센터·공장 건설 호황과 안전 규제 강화가 수요 견인.",
+   "drivers": [
+    "렌탈사 CAPEX 사이클",
+    "공장·데이터센터·물류센터 착공",
+    "고소 작업 안전 규제",
+    "전동화(리튬 배터리) 전환"
+   ],
+   "competitors": [
+    "JLG (Oshkosh) — 미검증",
+    "Genie (Terex) — 미검증",
+    "Haulotte — 미검증",
+    "Skyjack — 미검증",
+    "Zoomlion — 미검증",
+    "Dingli — 미검증",
+    "XCMG — 미검증",
+    "Sinoboom — 미검증",
+    "호룡 (한국, 트럭탑재형) — 미검증"
+   ],
+   "ideas": [
+    "트럭탑재형 고소작업대의 전동 PTO·배터리 사양",
+    "고하중 리프트(설비 설치·유리 시공) 니치 강화",
+    "원격 진단·IoT 유지보수(렌탈사 요구)"
+   ],
+   "indicators": [
+    "NE.GDI.FTOT.KD.ZG",
+    "BX.KLT.DINV.WD.GD.ZS",
+    "FR.INR.LEND",
+    "NY.GDP.PCAP.CD"
+   ]
+  },
+  {
+   "id": "SE_IAWP",
+   "group": "특수장비",
+   "name": "활선차 (절연 고소작업차)",
+   "own": true,
+   "market": "송배전 유지보수·전력망 확충. 북미 전력망 노후화 교체와 데이터센터발 전력 수요 급증, 신흥국 전력 보급률 확대가 수요 동인.",
+   "drivers": [
+    "전력망 투자(북미·유럽·인도)",
+    "재생에너지 계통연계",
+    "전력 유틸리티 CAPEX"
+   ],
+   "competitors": [
+    "Altec (미국) — 미검증",
+    "Terex Utilities — 미검증",
+    "Versalift (Time Mfg) — 미검증",
+    "Aichi (일본, 도요타 계열) — 미검증",
+    "Dur-A-Lift — 미검증"
+   ],
+   "ideas": [
+    "북미 유틸리티 규격(ANSI A92.2) 인증 활선차 수출",
+    "전기 샤시 기반 무소음 활선차",
+    "절연 로봇 암(무인 활선 작업) — 국책과제·로봇 사업과 연계"
+   ],
+   "indicators": [
+    "BX.KLT.DINV.WD.GD.ZS",
+    "NE.GDI.FTOT.KD.ZG",
+    "NY.GDP.PCAP.CD",
+    "SP.URB.GROW"
+   ]
+  },
+  {
+   "id": "SE_AE",
+   "group": "특수장비",
+   "name": "공항장비 (GSE)",
+   "own": true,
+   "market": "항공 여객 회복과 공항 신·증설(인도·동남아·중동 허브 공항)에 연동. 전동 GSE 전환이 글로벌 트렌드.",
+   "drivers": [
+    "항공 여객 수·공항 CAPEX",
+    "전동 GSE 의무화(EU·미국 주요 공항)",
+    "허브 공항 건설(사우디·인도·베트남)"
+   ],
+   "competitors": [
+    "TLD — 미검증",
+    "JBT AeroTech — 미검증",
+    "Mallaghan — 미검증",
+    "Charlatte — 미검증",
+    "Textron GSE — 미검증"
+   ],
+   "ideas": [
+    "전동 디아이싱·케이터링 트럭",
+    "공항 전용 고소작업대·정비 플랫폼"
+   ],
+   "indicators": [
+    "NY.GDP.MKTP.KD.ZG",
+    "NY.GDP.PCAP.CD",
+    "BX.KLT.DINV.WD.GD.ZS"
+   ]
+  },
+  {
+   "id": "KM",
+   "group": "코마츠 (딜러)",
+   "name": "굴착기 · 휠로더 · 도저 · 그레이더 · 덤프트럭",
+   "own": true,
+   "market": "국내 코마츠 유통. 글로벌 굴착기 시장은 중국 수출 주도 회복, 북미 강세. 코마츠 FY26 매출 가이던스 ¥4,302B(+4.1%), 건설장비 수요 0~+5%.",
+   "drivers": [
+    "국내 건설 수주·SOC 예산",
+    "환율(엔화)",
+    "국내 광산·골재"
+   ],
+   "competitors": [
+    "HD건설기계 (한국) — 미검증",
+    "두산밥캣 (한국) — 미검증",
+    "Volvo CE — 미검증",
+    "Caterpillar — 미검증",
+    "Hitachi — 미검증",
+    "Sany·XCMG (중국) — 미검증"
+   ],
+   "ideas": [
+    "브레이커·드릴·컴프레서 번들(원스톱 토목 패키지)",
+    "중고·렌탈·부품 밸류체인 확대"
+   ],
+   "indicators": [
+    "NE.GDI.FTOT.KD.ZG",
+    "NY.GDP.MKTP.KD.ZG",
+    "PA.NUS.FCRF"
+   ]
+  }
+ ],
+ "product_stats": [
+  {
+   "product": "굴착기",
+   "stat": "중국 1~8월 191,557대 (+24.2%), 수출 96,938대 (+31.8%)",
+   "source": "CCMA"
+  },
+  {
+   "product": "굴착기",
+   "stat": "인도 FY26 토공장비 97,236대 (-2%), 전체의 71%",
+   "source": "ICEMA"
+  },
+  {
+   "product": "굴착기",
+   "stat": "HD건설기계 차세대 굴착기 신모델로 선진시장 +18%, 국내 +25% (2Q26)",
+   "source": "HD건설기계"
+  },
+  {
+   "product": "휠로더",
+   "stat": "중국 전동 휠로더, 1~2년 내 디젤 추월 전망",
+   "source": "Off-Highway Research"
+  },
+  {
+   "product": "컴팩트 장비",
+   "stat": "두산밥캣 소형장비 매출 +4% (2Q26), 북미 주택 건설 연동",
+   "source": "두산밥캣"
+  },
+  {
+   "product": "광산장비",
+   "stat": "코마츠 광산장비 매출 ¥462.4B (+13.8%), 중남미 +34.2%, 아프리카 +31.2%, 아시아 -49.8% (1Q FY26)",
+   "source": "Komatsu"
+  },
+  {
+   "product": "전동 장비",
+   "stat": "Volvo CE A30 Electric 굴절식 덤프트럭 세계 최초 양산 (노르웨이 LNS 인도)",
+   "source": "Volvo CE"
+  },
+  {
+   "product": "어태치먼트",
+   "stat": "해체용 어태치먼트 $4.1B(2023)→$7.1B(2033), 그래플 8.9% CAGR 최고",
+   "source": "Allied Market Research"
+  },
+  {
+   "product": "콘크리트·도로 장비",
+   "stat": "인도 FY26 콘크리트 14,486대(+0.1%), 도로 7,445대(+6.3%)",
+   "source": "ICEMA"
+  }
+ ],
+ "companies": [
+  {
+   "id": "soosan",
+   "name": "수산세보틱스",
+   "en": "Soosan Cebotics (구 수산중공업, KRX 017550)",
+   "country": "KR",
+   "tier": "자사",
+   "yt_rank": null,
+   "sales_2025_usd_bn": null,
+   "latest": "2025년 매출 2,294억원(+15.9%), 영업이익 190억원(+57%), 순이익 158억원. 매출 구성: 특수장비 83%, 어태치먼트 17% (2Q26). 2026.7 190억원 국책과제 수주, 상반기 흑자 — '글로벌 스마트 로봇 리더' 선언. 수산비나모터 창립 20주년.",
+   "watch": "로봇·자동화(활선 작업 로봇 등) 사업 전환, 브레이커 수출 지역 다변화, 코마츠 딜러 사업",
+   "sources": [
+    {
+     "t": "수산세보틱스 홈페이지",
+     "u": "https://www.soosancebotics.com"
+    },
+    {
+     "t": "버틀러 재무",
+     "u": "https://www.butler.works/ko/companies/00135111"
+    },
+    {
+     "t": "DART",
+     "u": "https://dart.fss.or.kr/html/search/SearchCompanyIR_M.html?textCrpNM=017550"
+    }
+   ]
+  },
+  {
+   "id": "cat",
+   "name": "Caterpillar",
+   "en": "Caterpillar Inc.",
+   "country": "US",
+   "tier": "글로벌 Top5",
+   "yt_rank": 1,
+   "yt_share": 15.2,
+   "sales_2025_usd_bn": 37.5,
+   "latest": "2Q26 매출 $20.5B(+24%), 건설부문 $8.35B(+35%), 북미 건설 $5.07B(+50%), 전력·에너지 $8.24B(+17%). 수주 강세·백로그 확대.",
+   "watch": "데이터센터 전력(발전기) 사업, 관세 비용, 딜러 재고",
+   "sources": [
+    {
+     "t": "ConstructConnect 2026-08-04",
+     "u": "https://news.constructconnect.com/caterpillar-posts-record-quarter-contractor-demand-lifts-equipment-sales"
+    }
+   ]
+  },
+  {
+   "id": "komatsu",
+   "name": "Komatsu",
+   "en": "Komatsu Ltd.",
+   "country": "JP",
+   "tier": "글로벌 Top5",
+   "yt_rank": 2,
+   "yt_share": 11.0,
+   "sales_2025_usd_bn": 27.1,
+   "latest": "1Q FY26(4~6월) 매출 ¥1,043.1B(+14.7%), 영업이익 ¥151.6B(+8%), 마진 14.5%(-0.9p). 북미 +29.5%, 중남미 +37.2%, 아시아 -29.6%, 일본 -12%, 중동 -54.6%. FY26 가이던스 매출 ¥4,302B(+4.1%)로 상향. 수요 전망 글로벌 0~+5%, 광산 -5~-10%.",
+   "watch": "환율 가정 ¥150/USD, 마진 하락, 광산장비 사이클",
+   "sources": [
+    {
+     "t": "Investing.com 2026-07-29",
+     "u": "https://www.investing.com/news/company-news/komatsu-q1-2026-slides-record-sales-beat-estimates-guidance-raised-93CH-4820701"
+    },
+    {
+     "t": "Komatsu IR 수요 데이터",
+     "u": "https://www.komatsu.jp/en/ir/library/demand-orders"
+    }
+   ]
+  },
+  {
+   "id": "xcmg",
+   "name": "XCMG",
+   "en": "徐工机械 (000425.SZ)",
+   "country": "CN",
+   "tier": "중국 3사",
+   "yt_rank": 3,
+   "yt_share": 5.8,
+   "sales_2025_usd_bn": 14.2,
+   "latest": "1H26 매출 ¥61.2B(+11.8%), 순이익 ¥4.0B(-9.1%). 해외 매출 성장이 견인했으나 환손실로 이익 감소.",
+   "watch": "해외 비중 확대, 신흥국 가격 공세, 크레인·AWP 라인",
+   "sources": [
+    {
+     "t": "Caixin 2026-09-01",
+     "u": "https://www.caixinglobal.com/2026-09-01/overseas-growth-lifts-chinas-top-machinery-makers-but-fx-losses-hit-profit-102480446.html"
+    }
+   ]
+  },
+  {
+   "id": "deere",
+   "name": "John Deere",
+   "en": "Deere & Company (건설·임업)",
+   "country": "US",
+   "tier": "글로벌 Top5",
+   "yt_rank": 4,
+   "yt_share": 5.4,
+   "sales_2025_usd_bn": 13.2,
+   "latest": "옐로우테이블 2026 4위(점유율 5.4%). 북미 컴팩트·중형 장비, Wirtgen 도로장비.",
+   "watch": "북미 주택·도로 예산(IIJA 종료 효과)",
+   "sources": [
+    {
+     "t": "Yellow Table 2026 (via 헤럴드경제)",
+     "u": "https://biz.heraldcorp.com/article/10736345"
+    }
+   ]
+  },
+  {
+   "id": "liebherr",
+   "name": "Liebherr",
+   "en": "Liebherr Group",
+   "country": "DE",
+   "tier": "글로벌 Top5",
+   "yt_rank": 5,
+   "yt_share": 5.1,
+   "sales_2025_usd_bn": 12.7,
+   "latest": "2025년 '안정적 성장' 발표. 옐로우테이블 2026 5위(점유율 5.1%). 광산·크레인·토공 전 부문 보유.",
+   "watch": "광산 트럭·대형 굴착기, 크레인(자사 경쟁 영역)",
+   "sources": [
+    {
+     "t": "Liebherr 2025 results",
+     "u": "https://www.liebherr.com/en-za/n/liebherr-sees-stable-growth-in-the-2025-business-year-244544-6293007"
+    }
+   ]
+  },
+  {
+   "id": "sany",
+   "name": "Sany",
+   "en": "三一重工 (600031.SS)",
+   "country": "CN",
+   "tier": "중국 3사",
+   "yt_rank": 6,
+   "yt_share": 5.1,
+   "sales_2025_usd_bn": 12.6,
+   "latest": "1H26 매출 ¥53.3B(+19.7%), 순이익 ¥5.7B(+9.1%). 해외 매출 비중 60% 초과. 중국 3사 중 가장 양호.",
+   "watch": "전동 굴착기·휠로더, 인도네시아·인도 현지 공장",
+   "sources": [
+    {
+     "t": "Caixin 2026-09-01",
+     "u": "https://www.caixinglobal.com/2026-09-01/overseas-growth-lifts-chinas-top-machinery-makers-but-fx-losses-hit-profit-102480446.html"
+    },
+    {
+     "t": "EquipNode",
+     "u": "https://equipnode.com/en/blog-news-20260719.html"
+    }
+   ]
+  },
+  {
+   "id": "volvoce",
+   "name": "Volvo CE",
+   "en": "Volvo Construction Equipment",
+   "country": "SE",
+   "tier": "글로벌 Top10",
+   "yt_rank": 7,
+   "yt_share": 4.2,
+   "sales_2025_usd_bn": 10.5,
+   "latest": "2Q26 매출 SEK 21.6B(보고 -6%, SDLG 매각 제외 유기적 +13%), 조정 영업이익 SEK 3.1B, 마진 14.4%(+1.3p). 수주 +8%, 인도 +14%. 유럽 +23%, 북미 +25%, 아시아 -52%. A30 Electric 양산.",
+   "watch": "전동 장비 상용화, 중국(SDLG) 철수 후 아시아 전략",
+   "sources": [
+    {
+     "t": "Volvo CE Q2 2026",
+     "u": "https://www.volvoce.com/global/en/news-and-events/news-and-stories/2026/volvo-construction-equipment-delivers-increased-volumes-and-improved-earnings-in-q2-2026/"
+    }
+   ]
+  },
+  {
+   "id": "hitachi",
+   "name": "Hitachi CM",
+   "en": "Hitachi Construction Machinery",
+   "country": "JP",
+   "tier": "글로벌 Top10",
+   "yt_rank": 8,
+   "yt_share": 3.7,
+   "sales_2025_usd_bn": 9.1,
+   "latest": "1Q FY26 매출 ¥329.1B(+7.5%) 분기 최대. 북미 -7.4%, 중남미 2배(경암 광산). 밸류체인(부품·서비스·렌탈·중고) 매출 비중 48%. FY26 매출 가이던스 상향.",
+   "watch": "애프터마켓 수익 모델, 북미 직판(Deere 결별 후)",
+   "sources": [
+    {
+     "t": "Construction Owners",
+     "u": "https://www.constructionowners.com/news/hitachi-construction-machinery-reports-record-first-quarter-revenue-raises-full-year-outlook"
+    }
+   ]
+  },
+  {
+   "id": "zoomlion",
+   "name": "Zoomlion",
+   "en": "中联重科 (000157.SZ)",
+   "country": "CN",
+   "tier": "중국 3사",
+   "yt_rank": 11,
+   "yt_share": 2.8,
+   "sales_2025_usd_bn": 6.8,
+   "latest": "1H26 매출 ¥27.1B(+9.2%), 순이익 ¥2.1B(-24%). 크레인·AWP·콘크리트 장비 강자, 해외 공격적 확장.",
+   "watch": "AWP·크레인에서 자사와 직접 경쟁, 환손실",
+   "sources": [
+    {
+     "t": "Caixin 2026-09-01",
+     "u": "https://www.caixinglobal.com/2026-09-01/overseas-growth-lifts-chinas-top-machinery-makers-but-fx-losses-hit-profit-102480446.html"
+    }
+   ]
+  },
+  {
+   "id": "bobcat",
+   "name": "두산밥캣",
+   "en": "Doosan Bobcat",
+   "country": "KR",
+   "tier": "한국",
+   "yt_rank": 13,
+   "yt_share": 2.5,
+   "sales_2025_usd_bn": 6.18,
+   "latest": "2Q26 매출 2조4,479억(+11.2%), 영업이익 2,917억(+42.9%, 관세환급 효과), 마진 11.9%. 소형장비 +4%, 산업차량 +2%, 모트롤 +40%. 2025년 매출 $6.18B(-1.4%), 옐로우테이블 13위(11위→). 북미 비중 70%+. EMEA 1Q +18%, 멕시코 신공장.",
+   "watch": "북미 주택 경기·금리, 관세, EMEA 다변화",
+   "sources": [
+    {
+     "t": "스마트투데이 2026-07-23",
+     "u": "https://www.smarttoday.co.kr/ko-kr/articles/109759"
+    },
+    {
+     "t": "헤럴드경제 옐로우테이블",
+     "u": "https://biz.heraldcorp.com/article/10736345"
+    }
+   ]
+  },
+  {
+   "id": "hdce",
+   "name": "HD건설기계",
+   "en": "HD Hyundai Construction Equipment + HD Hyundai Infracore (통합법인)",
+   "country": "KR",
+   "tier": "한국",
+   "yt_rank": 15,
+   "yt_share": 2.3,
+   "sales_2025_usd_bn": 5.66,
+   "latest": "2Q26 매출 2조4,342억(+18.2%), 영업이익 2,489억(+92%), 마진 10.2%(통합 후 첫 두자릿수). 건설기계 부문 2조182억(+22%). 선진시장 +18%, 국내 +25%, 중남미 +29.9%, 중동·아프리카 +51.4%, 인도 +22.1%, 중국 +14.1%. 에티오피아 대형굴착기 120대, 몽골 광산 60대+ 수주.",
+   "watch": "차세대 굴착기 신모델, 광산·신흥시장 확대, 엔진(방산) 사업",
+   "sources": [
+    {
+     "t": "아시아경제 2026-07-29",
+     "u": "https://view.asiae.co.kr/article/2026072914114763611"
+    },
+    {
+     "t": "헤럴드경제 옐로우테이블",
+     "u": "https://biz.heraldcorp.com/article/10736345"
+    }
+   ]
+  },
+  {
+   "id": "epiroc",
+   "name": "Epiroc",
+   "en": "Epiroc AB (스웨덴, Tools & Attachments 부문)",
+   "country": "SE",
+   "tier": "사용자 등록",
+   "yt_rank": 12,
+   "yt_share": 2.6,
+   "sales_2025_usd_bn": 6.3,
+   "latest": "2Q26 그룹 수주 SEK 17.3B(유기적 +13%), 매출 SEK 16.7B(+11%), 조정 영업이익률 20.1%. 유압브레이커·드릴 공구가 속한 Tools & Attachments 부문은 수주 SEK 3.86B(유기적 +4%), 매출 SEK 3.85B(+7%), EBIT 마진 12.7%(전년 12.9%). 수주 지역 비중: 북미 30%, 아시아·호주 28%, 아프리카·중동 17%, 유럽 13%, 남미 12%. 2026.9 스웨덴 칼마르(Kalmar) 유압 어태치먼트 공장 증설 준공(8,000㎡+, 175명): SB 52~HB 10000 전 브레이커 라인업을 한 지붕 아래 통합해 유럽 생산 집중. 인프라 수요 '소폭 증가', 광산 수요 고수준 유지 전망.",
+   "watch": "유럽 전략 벤치마크: ①브레이커 생산을 스웨덴에 집중해 품질·납기 통일 ②프랑스 ACB+(2024, 어태치먼트·퀵커플러, 매출 SEK 325M) 인수로 해체·재활용 풀라인업 ③한국 디앤에이중공업(2021) 인수로 중저가 라인 확보 ④서비스·소모품(치즐·공구) 애프터마켓 비중 확대. 자사 시사점: 유럽에서 Epiroc은 프리미엄+서비스망, 자사는 가격·내구성·납기로 차별화 가능한 중형(5~30톤급) 세그먼트와 렌탈사 채널 공략이 현실적.",
+   "sources": [
+    {
+     "t": "Investing.com Epiroc Q2 2026 (2026-07-17)",
+     "u": "https://www.investing.com/news/company-news/epiroc-q2-2026-slides-mining-demand-drives-13-order-growth-93CH-4798689"
+    },
+    {
+     "t": "Epiroc Q2 2026 Interim Report (PDF)",
+     "u": "https://www.epirocgroup.com/content/dam/epiroc/corporate/documents/quarterly-results-presentations-/2026-q2/Epiroc%20Interim%20Report%20Q2%202026.pdf"
+    },
+    {
+     "t": "Global Mining Review – 칼마르 공장 증설 (2026-09-09)",
+     "u": "https://www.globalminingreview.com/mining/09092026/epiroc-inaugurates-expanded-manufacturing-facility-for-hydraulic-attachments-in-sweden/"
+    },
+    {
+     "t": "Epiroc – ACB+ 인수 완료 (2024-09-04)",
+     "u": "https://news.cision.com/epiroc/r/epiroc-completes-acquisition-of-french-manufacturer-of-excavator-attachments,c4032743"
+    },
+    {
+     "t": "Construction Briefing – 디앤에이중공업 인수 (2021)",
+     "u": "https://www.constructionbriefing.com/news/epiroc-to-acquire-breaker-manufacturer/8011873.article"
+    }
+   ]
+  },
+  {
+   "id": "sandvik",
+   "name": "Sandvik (Rammer)",
+   "en": "Sandvik AB – Rock Processing Solutions 부문 (Rammer 브레이커, 핀란드 라흐티)",
+   "country": "SE",
+   "tier": "사용자 등록",
+   "yt_rank": 10,
+   "yt_share": 2.8,
+   "sales_2025_usd_bn": 6.9,
+   "latest": "2Q26 그룹 수주 SEK 37.8B(유기적 +17%, 5분기 연속 두 자릿수), 매출 SEK 36.8B(+24%), 조정 EBITA 마진 22.6%(사상 최고). Rammer 브레이커가 속한 Rock Processing Solutions는 그룹 매출의 약 9%, 수주 유기적 +7%, 장비 +5%, 애프터마켓 +8%(부문 매출의 59%), EBITA 마진 14.6%. 경영진은 상반기 유럽·북미에서 골재·해체·재활용 인프라 수요 회복을 언급. 광산 부문 수주 SEK 20B 돌파(사상 최초), 애프터마켓이 광산 매출의 66%.",
+   "watch": "유럽 전략 벤치마크: ①Rammer는 해체·재활용·골재(채석) 3개 응용에 집중하고 Sandvik 파쇄·선별 장비와 번들 판매 ②애프터마켓(공구·서비스) 비중 59%로 수익 안정화 ③딜러망은 유럽 건설장비 딜러와 광산 직판 혼합. 자사 시사점: 해체·재활용 수요 회복 국면이므로 유럽 딜러 대상 브레이커+소모품 패키지와 빠른 A/S 응답이 셰어 확대의 핵심. 분기 보고서에 Rammer 단독 수치는 공개되지 않음.",
+   "sources": [
+    {
+     "t": "Investing.com Sandvik Q2 2026 (2026-07-17)",
+     "u": "https://ng.investing.com/news/company-news/sandvik-q2-2026-slides-record-margins-hit-226-on-mining-machining-strength-93CH-2605165"
+    },
+    {
+     "t": "Sandvik Interim Report Q2 2026 (PDF)",
+     "u": "https://www.home.sandvik/siteassets/investors/reports--presentations/interim-reports/2026/interim-report-second-quarter-2026.pdf"
+    },
+    {
+     "t": "Yellow Table 2026 (2차 출처)",
+     "u": "https://biz.heraldcorp.com/article/10736345"
+    }
+   ]
+  }
+ ],
+ "yellow_table": {
+  "title": "KHL 옐로우테이블 2026 (2025년 건설기계 매출, USD 십억)",
+  "total_top50_usd_bn": 246.5,
+  "country_share": [
+   {
+    "c": "미국",
+    "v": 26.0
+   },
+   {
+    "c": "일본",
+    "v": 20.5
+   },
+   {
+    "c": "중국",
+    "v": 19.8
+   }
+  ],
+  "rows": [
+   {
+    "r": 1,
+    "n": "Caterpillar",
+    "c": "US",
+    "v": 37.5
+   },
+   {
+    "r": 2,
+    "n": "Komatsu",
+    "c": "JP",
+    "v": 27.1
+   },
+   {
+    "r": 3,
+    "n": "XCMG",
+    "c": "CN",
+    "v": 14.2
+   },
+   {
+    "r": 4,
+    "n": "John Deere",
+    "c": "US",
+    "v": 13.2
+   },
+   {
+    "r": 5,
+    "n": "Liebherr",
+    "c": "DE",
+    "v": 12.7
+   },
+   {
+    "r": 6,
+    "n": "Sany",
+    "c": "CN",
+    "v": 12.6
+   },
+   {
+    "r": 7,
+    "n": "Volvo CE",
+    "c": "SE",
+    "v": 10.5
+   },
+   {
+    "r": 8,
+    "n": "Hitachi CM",
+    "c": "JP",
+    "v": 9.1
+   },
+   {
+    "r": 9,
+    "n": "JCB",
+    "c": "GB",
+    "v": 7.5
+   },
+   {
+    "r": 10,
+    "n": "Sandvik",
+    "c": "SE",
+    "v": 6.9
+   },
+   {
+    "r": 11,
+    "n": "Zoomlion",
+    "c": "CN",
+    "v": 6.8
+   },
+   {
+    "r": 12,
+    "n": "Epiroc",
+    "c": "SE",
+    "v": 6.3
+   },
+   {
+    "r": 13,
+    "n": "두산밥캣",
+    "c": "KR",
+    "v": 6.18
+   },
+   {
+    "r": 14,
+    "n": "Metso",
+    "c": "FI",
+    "v": 5.8
+   },
+   {
+    "r": 15,
+    "n": "HD건설기계",
+    "c": "KR",
+    "v": 5.66
+   },
+   {
+    "r": 16,
+    "n": "Terex",
+    "c": "US",
+    "v": 5.4
+   },
+   {
+    "r": 17,
+    "n": "LiuGong",
+    "c": "CN",
+    "v": 4.7
+   },
+   {
+    "r": 18,
+    "n": "JLG",
+    "c": "US",
+    "v": 4.3
+   },
+   {
+    "r": 19,
+    "n": "Kubota",
+    "c": "JP",
+    "v": 4.2
+   },
+   {
+    "r": 20,
+    "n": "CNH",
+    "c": "IT",
+    "v": 3.0
+   }
+  ],
+  "source": "KHL International Construction Yellow Table 2026 (2차 출처: 헤럴드경제, qhmach). 금액은 2차 출처 기준이며 원문 확인 권장."
+ },
+ "news": [
+  {
+   "d": "2026-09-09",
+   "t": "Epiroc 스웨덴 칼마르 유압 어태치먼트 공장 증설 준공 — 유럽 브레이커 생산 집중",
+   "tag": "기업",
+   "u": "https://www.globalminingreview.com/mining/09092026/epiroc-inaugurates-expanded-manufacturing-facility-for-hydraulic-attachments-in-sweden/"
+  },
+  {
+   "d": "2026-09-09",
+   "t": "중국 8월 굴착기 판매 19,716대(+19.3%), 수출 +32.7%",
+   "tag": "제품",
+   "u": "https://www.steelorbis.com/steel-news/latest-news/chinas-excavator-sales-increase-by-242-percent-in-january-august-2026-1475886.htm"
+  },
+  {
+   "d": "2026-09-01",
+   "t": "중국 3사(Sany·XCMG·Zoomlion) 상반기 해외 성장, 환손실로 이익 압박",
+   "tag": "기업",
+   "u": "https://www.caixinglobal.com/2026-09-01/overseas-growth-lifts-chinas-top-machinery-makers-but-fx-losses-hit-profit-102480446.html"
+  },
+  {
+   "d": "2026-08-04",
+   "t": "Caterpillar 2분기 사상 최대 실적, 북미 건설 +50%",
+   "tag": "기업",
+   "u": "https://news.constructconnect.com/caterpillar-posts-record-quarter-contractor-demand-lifts-equipment-sales"
+  },
+  {
+   "d": "2026-07-29",
+   "t": "HD건설기계 2분기 영업이익 +92%, 중동·아프리카 +51%",
+   "tag": "기업",
+   "u": "https://view.asiae.co.kr/article/2026072914114763611"
+  },
+  {
+   "d": "2026-07-29",
+   "t": "코마츠 1Q 사상 최대 매출, 연간 가이던스 상향, 글로벌 수요 0~+5%",
+   "tag": "기업",
+   "u": "https://www.investing.com/news/company-news/komatsu-q1-2026-slides-record-sales-beat-estimates-guidance-raised-93CH-4820701"
+  },
+  {
+   "d": "2026-07-23",
+   "t": "두산밥캣 2분기 영업이익 +42.9%, 관세환급 효과",
+   "tag": "기업",
+   "u": "https://www.smarttoday.co.kr/ko-kr/articles/109759"
+  },
+  {
+   "d": "2026-07-20",
+   "t": "수산세보틱스 190억 국책과제 수주·상반기 흑자, 스마트 로봇 리더 도약 선언",
+   "tag": "자사",
+   "u": "https://www.soosancebotics.com"
+  },
+  {
+   "d": "2026-07",
+   "t": "Volvo CE 2분기 유기적 성장 +13%, A30 Electric 양산 개시",
+   "tag": "기업",
+   "u": "https://www.volvoce.com/global/en/news-and-events/news-and-stories/2026/volvo-construction-equipment-delivers-increased-volumes-and-improved-earnings-in-q2-2026/"
+  },
+  {
+   "d": "2026-05-12",
+   "t": "옐로우테이블 2026: 두산밥캣 13위, HD건설기계 15위 — Top10 재진입 실패",
+   "tag": "기업",
+   "u": "https://biz.heraldcorp.com/article/10736345"
+  },
+  {
+   "d": "2026-04",
+   "t": "인도 FY26 건설기계 판매 -2%, 수출 +32% 사상 최대 (ICEMA)",
+   "tag": "제품",
+   "u": "https://www.nbmcw.com/news/equipment-machinery/india-construction-equipment-sales-decline-2-in-fy26-exports-jump-31-5-icema.html"
+  },
+  {
+   "d": "2026-03-02",
+   "t": "CECE: 유럽 2025 건설기계 판매 +4.6%, 2026 +2~2.5% 전망",
+   "tag": "제품",
+   "u": "https://www.heavyquipmag.com/2026/03/02/cece-european-construction-equipment-sales-up-4-6-in-annual-economic-report/"
+  }
+ ],
+ "sources": [
+  {
+   "n": "CCMA (중국공정기계공업협회) 월간 굴착기 판매",
+   "cadence": "매월 10일경",
+   "u": "https://www.steelorbis.com/steel-news/latest-news/"
+  },
+  {
+   "n": "Komatsu IR – 7대 기종 지역별 수요·KOMTRAX",
+   "cadence": "매월",
+   "u": "https://www.komatsu.jp/en/ir/library/demand-orders"
+  },
+  {
+   "n": "ICEMA (인도 건설기계협회)",
+   "cadence": "분기",
+   "u": "https://www.icema.in"
+  },
+  {
+   "n": "CECE (유럽 건설기계협회) Business Barometer / Annual Report",
+   "cadence": "월간·연간",
+   "u": "https://www.cece.eu"
+  },
+  {
+   "n": "AEM (미국 장비제조협회)",
+   "cadence": "월간·분기",
+   "u": "https://www.aem.org"
+  },
+  {
+   "n": "CEMA (일본 건설기계공업회) 출하 통계",
+   "cadence": "매월",
+   "u": "https://www.cema.or.jp"
+  },
+  {
+   "n": "한국건설기계산업협회 (KOCEMA) 건설기계산업 동향",
+   "cadence": "매월",
+   "u": "https://www.kocema.org"
+  },
+  {
+   "n": "KHL Yellow Table (연간 Top 50)",
+   "cadence": "매년 4~5월",
+   "u": "https://www.khl.com"
+  },
+  {
+   "n": "Off-Highway Research",
+   "cadence": "연간·분기",
+   "u": "https://www.offhighwayresearch.com"
+  },
+  {
+   "n": "World Bank WDI API",
+   "cadence": "연간 (수시 갱신)",
+   "u": "https://api.worldbank.org/v2/"
+  },
+  {
+   "n": "IMF World Economic Outlook DataMapper",
+   "cadence": "4월·10월",
+   "u": "https://www.imf.org/external/datamapper/"
+  }
+ ],
+ "verification_note": "경쟁사는 각 사 공식 홈페이지(또는 공식 카탈로그)에서 제품군을 확인한 경우에만 '확인' 표시. '미검증' 항목은 다음 월간 갱신 때 공식 사이트로 검증. 전진중공업은 콘크리트펌프카·붐펌프 제조사로 확인되어 드릴 경쟁사에서 제외(2026-10-08)."
+}

@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif;background:#f9f9f7}img{max-width:100%}[hidden]{display:none!important}.db-only{display:none!important}</style>
+<script data-goatcounter="https://soosan-radar.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<title>건설기계 마켓 레이더</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 상단 고정 탭바 + 단일 컬럼 콘텐츠(최대 1180px). 요약 → 상세 순서. 데이터는 fetch로 로드. */
+:root{
+  --bg:#f6f7f5; --surface:#fcfcfb; --surface-2:#eef1ec; --line:#dfe3dc; --hair:rgba(11,11,11,.10);
+  --fg:#101411; --fg-2:#4f564f; --muted:#86897f;
+  --accent:#1f6f4a; --accent-ink:#ffffff; --accent-soft:#dcefe3;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --pos:#006300; --neg:#d03b3b; --div-neg:#e34948; --div-pos:#2a78d6; --div-mid:#f0efec;
+  --font:"IBM Plex Sans KR",system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#121412; --surface:#1a1c1a; --surface-2:#232623; --line:#2d312d; --hair:rgba(255,255,255,.10);
+  --fg:#f1f3ee; --fg-2:#c4c8bf; --muted:#8d918a;
+  --accent:#4fb37e; --accent-ink:#0b130e; --accent-soft:#1d3327;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --pos:#0ca30c; --neg:#e66767; --div-neg:#e66767; --div-pos:#3987e5; --div-mid:#383835;
+  color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#121412; --surface:#1a1c1a; --surface-2:#232623; --line:#2d312d; --hair:rgba(255,255,255,.10);
+  --fg:#f1f3ee; --fg-2:#c4c8bf; --muted:#8d918a;
+  --accent:#4fb37e; --accent-ink:#0b130e; --accent-soft:#1d3327;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --pos:#0ca30c; --neg:#e66767; --div-neg:#e66767; --div-pos:#3987e5; --div-mid:#383835;
+  color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:14.5px;line-height:1.55;margin:0}
+a{color:var(--accent)}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-size:1.35rem;font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.1rem;font-weight:600;margin-bottom:10px}
+h3{font-size:.98rem;font-weight:600}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{padding-block:12px 0}
+.brand{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px}
+.brand .sub{color:var(--fg-2);font-size:.85rem}
+.brand .upd{margin-left:auto;color:var(--muted);font-size:.8rem;font-family:var(--mono)}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;margin-top:8px;scrollbar-width:none}
+nav.tabs button{appearance:none;background:none;border:0;border-bottom:2px solid transparent;color:var(--fg-2);font:inherit;font-weight:500;padding:8px 12px;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+nav.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:4px}
+section.view{padding-top:20px}
+.lead{color:var(--fg-2);max-width:68ch;margin:0 0 16px}
+.grid{display:grid;gap:12px}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:860px){.g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.g3,.g2{grid-template-columns:1fr}}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;min-width:0}
+.tile .lab{font-size:.78rem;color:var(--fg-2);text-transform:none;letter-spacing:.01em}
+.tile .val{font-size:1.5rem;font-weight:600;margin-top:4px;line-height:1.2}
+.tile .delta{font-family:var(--mono);font-size:.82rem;margin-top:4px}
+.tile .note{font-size:.8rem;color:var(--muted);margin-top:6px}
+.tile .src{font-size:.72rem;color:var(--muted);margin-top:6px}
+.up{color:var(--pos)}.down{color:var(--neg)}.flat{color:var(--fg-2)}
+.chip{display:inline-block;font-size:.72rem;padding:1px 8px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);color:var(--fg-2);vertical-align:middle;white-space:nowrap}
+.chip.own{background:var(--accent-soft);border-color:transparent;color:var(--fg)}
+.chip.sig-up{color:var(--pos)}.chip.sig-down{color:var(--neg)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;min-width:0}
+.card+.card{margin-top:12px}
+.block{margin-top:28px}
+table{border-collapse:collapse;width:100%;font-size:.86rem}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--fg-2);font-weight:500;font-size:.78rem}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.tscroll{overflow-x:auto}
+.region-list{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.region{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;border-left:4px solid var(--line)}
+.region.up{border-left-color:var(--pos)}.region.down{border-left-color:var(--neg)}.region.mix{border-left-color:var(--s4)}
+.region .h{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.region p{margin:6px 0 0;font-size:.84rem;color:var(--fg-2)}
+.region .ko{font-size:.78rem;color:var(--muted);margin-top:6px}
+.heat td.c{text-align:center;font-family:var(--mono);font-variant-numeric:tabular-nums;border-radius:3px}
+.heat td.c span{display:block;padding:3px 4px;border-radius:3px;border:2px solid var(--surface)}
+.bars{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;font-size:.84rem}
+.bars .n{white-space:nowrap}.bars .n.kr{font-weight:600}
+.bars .b{height:12px;background:var(--s1);border-radius:0 4px 4px 0;min-width:2px}
+.bars .b.kr{background:var(--accent)}
+.bars .v{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--fg-2)}
+.prod{display:grid;grid-template-columns:1fr;gap:12px}
+.prod .card .h{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:8px}
+.prod .card .grp{font-size:.74rem;color:var(--muted)}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 20px;margin-top:8px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+.cols h4{margin:0 0 4px;font-size:.78rem;color:var(--fg-2);font-weight:500}
+.cols ul{margin:0;padding-left:18px;font-size:.84rem}
+.cols li{margin:2px 0}
+.ind-tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px}
+.co{display:grid;grid-template-columns:150px 1fr;gap:6px 16px}
+@media (max-width:640px){.co{grid-template-columns:1fr}}
+.co .name{font-weight:600}.co .en{font-size:.76rem;color:var(--muted);font-weight:400}
+.co .meta{font-size:.78rem;color:var(--muted);margin-top:4px}
+.co p{margin:0 0 6px;font-size:.88rem}
+.co .watch{font-size:.8rem;color:var(--fg-2)}
+.co .srcs{font-size:.76rem;margin-top:4px}
+.co .srcs a{margin-right:10px}
+form.add{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;align-items:end;margin-top:8px}
+form.add label{font-size:.76rem;color:var(--fg-2);display:block}
+input,select,textarea{font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:7px 9px;width:100%}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+button.btn{font:inherit;font-weight:600;background:var(--accent);color:var(--accent-ink);border:0;border-radius:6px;padding:8px 14px;cursor:pointer}
+button.btn.ghost{background:var(--surface-2);color:var(--fg);border:1px solid var(--line);font-weight:500}
+button.btn:disabled{opacity:.5;cursor:default}
+.userlist{margin-top:10px;display:grid;gap:6px}
+.userlist .row{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-size:.86rem;padding:8px 10px;background:var(--surface-2);border-radius:6px}
+.userlist .row .x{margin-left:auto;background:none;border:0;color:var(--muted);cursor:pointer;font:inherit}
+.empty{font-size:.84rem;color:var(--muted);padding:10px;border:1px dashed var(--line);border-radius:6px}
+.status{font-size:.78rem;color:var(--muted);margin-top:6px}
+.cfind{position:relative;max-width:520px}
+.cfind ul{position:absolute;left:0;right:0;top:100%;z-index:4;margin:2px 0 0;padding:4px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:6px;max-height:260px;overflow:auto;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.cfind li{padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.88rem}
+.cfind li:hover,.cfind li[aria-selected="true"]{background:var(--surface-2)}
+.cfind li .iso{font-family:var(--mono);color:var(--muted);font-size:.76rem;margin-left:6px}
+.chead{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;margin-top:16px}
+.chead .big{font-size:1.4rem;font-weight:700}
+.chead .m{color:var(--muted);font-size:.82rem}
+.ind{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin-top:12px}
+.ind .card{padding:12px 14px}
+.ind .t{font-size:.8rem;color:var(--fg-2);display:flex;justify-content:space-between;gap:8px}
+.ind .t .rel{font-size:.7rem;padding:0 6px;border-radius:999px;background:var(--surface-2);white-space:nowrap}
+.ind .v{font-size:1.3rem;font-weight:600;margin-top:2px;font-variant-numeric:tabular-nums}
+.ind .v small{font-size:.74rem;color:var(--muted);font-weight:400;margin-left:4px}
+.ind svg{width:100%;height:46px;display:block;margin-top:6px}
+.ind .why{font-size:.76rem;color:var(--muted);margin-top:6px}
+.ind .pct{font-size:.74rem;color:var(--fg-2);margin-top:4px;font-family:var(--mono)}
+.score{display:grid;grid-template-columns:1fr;gap:8px}
+.score .srow{display:grid;grid-template-columns:150px 1fr 56px;gap:10px;align-items:center;font-size:.84rem}
+.score .srow .track{height:10px;background:var(--surface-2);border-radius:5px;overflow:hidden}
+.score .srow .fill{height:100%;background:var(--s1);border-radius:5px}
+.score .srow .pv{font-family:var(--mono);text-align:right}
+.score input[type=range]{width:100%;padding:0}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:8px}
+.wgrid label{font-size:.76rem;color:var(--fg-2)}
+.total{display:flex;align-items:baseline;gap:12px;margin-top:10px}
+.total .n{font-size:2rem;font-weight:700;font-variant-numeric:tabular-nums}
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;align-items:end;margin-top:8px}
+.calc label{font-size:.76rem;color:var(--fg-2);display:block}
+.calc .out{grid-column:1/-1;background:var(--surface-2);border-radius:6px;padding:10px 12px;font-size:.9rem}
+.links{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.links a{font-size:.8rem;padding:4px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--fg)}
+.links a:hover{background:var(--surface-2)}
+.news li{margin:4px 0;font-size:.88rem}
+.news .d{font-family:var(--mono);color:var(--muted);font-size:.78rem;margin-right:6px}
+.foot{margin-top:40px;font-size:.78rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.tip{position:fixed;pointer-events:none;background:var(--fg);color:var(--bg);font-size:.76rem;padding:4px 8px;border-radius:4px;z-index:9;white-space:nowrap}
+dl.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.84rem;margin:0}
+dl.kv dt{color:var(--fg-2)}dl.kv dd{margin:0}
+@media (prefers-reduced-motion:no-preference){nav.tabs button{transition:color .15s}}
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand">
+    <h1>건설기계 마켓 레이더</h1>
+    <span class="sub">수산세보틱스 전략기획용 — 제품·기업·국가 지표</span>
+    <span class="upd" id="updated">데이터 로딩 중</span>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="섹션">
+    <button role="tab" aria-selected="true" data-tab="overview">개요</button>
+    <button role="tab" aria-selected="false" data-tab="products">제품별</button>
+    <button role="tab" aria-selected="false" data-tab="companies">기업별</button>
+    <button role="tab" aria-selected="false" data-tab="country">국가 지표</button>
+    <button role="tab" aria-selected="false" data-tab="vn">특장차 수요 (베트남)</button>
+    <button role="tab" aria-selected="false" data-tab="sources">출처·갱신</button>
+  </nav>
+</div></header>
+
+<main class="wrap">
+
+<!-- ===== 개요 ===== -->
+<section class="view" id="tab-overview" role="tabpanel">
+  <p class="lead" id="headline">월간 수집 데이터를 불러오는 중입니다.</p>
+  <div class="grid g3" id="kpis"></div>
+  <div class="block">
+    <h2>지역별 수요 신호</h2>
+    <div class="region-list" id="regions"></div>
+  </div>
+  <div class="block grid g2">
+    <div class="card">
+      <h3 id="kd-title">코마츠 7대 기종 지역별 수요</h3>
+      <div class="tscroll"><table class="heat" id="kd-table"></table></div>
+      <div class="status" id="kd-src"></div>
+    </div>
+    <div class="card">
+      <h3>최근 뉴스</h3>
+      <ul class="news" id="news" style="padding-left:0;list-style:none;margin:8px 0 0"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 제품별 ===== -->
+<section class="view" id="tab-products" role="tabpanel" hidden>
+  <p class="lead">수산세보틱스 홈페이지 제품군 기준으로 시장 규모·수요 동인·경쟁사·신제품 아이디어 시드를 정리했습니다. 각 제품에 연동되는 거시지표 코드는 「국가 지표」 탭의 지표와 같습니다.</p>
+  <div class="prod" id="products"></div>
+  <div class="block card db-only">
+    <h3>제품 추가 등록</h3>
+    <p class="status">여기에 등록한 제품은 다음 달 자동 수집 때 조사 대상에 포함됩니다. (저장은 이 페이지의 데이터 저장소에 됩니다)</p>
+    <form class="add" id="f-prod">
+      <div><label for="p-name">제품명</label><input id="p-name" required placeholder="예: 소형 전동 브레이커"></div>
+      <div><label for="p-group">제품군</label><input id="p-group" placeholder="예: 어태치먼트"></div>
+      <div><label for="p-comp">주요 경쟁사 (쉼표 구분)</label><input id="p-comp" placeholder="예: Epiroc, Rammer"></div>
+      <div><label for="p-note">메모</label><input id="p-note" placeholder="조사 포인트"></div>
+      <div><button class="btn" type="submit" id="p-btn">추가</button></div>
+    </form>
+    <div class="userlist" id="user-products"></div>
+    <div class="status" id="db-status-p"></div>
+  </div>
+  <div class="block card">
+    <h3>제품별 최신 통계</h3>
+    <div class="tscroll"><table id="pstats"><thead><tr><th>제품</th><th>통계</th><th>출처</th></tr></thead><tbody></tbody></table></div>
+  </div>
+</section>
+
+<!-- ===== 기업별 ===== -->
+<section class="view" id="tab-companies" role="tabpanel" hidden>
+  <p class="lead">글로벌 Top5 + 중국 3사 + 한국 3사(통합 후 2사) + 자사. 최신 분기 실적과 관찰 포인트를 매월 갱신합니다.</p>
+  <div class="card">
+    <h3 id="yt-title">옐로우테이블</h3>
+    <div class="bars" id="yt-bars" style="margin-top:8px"></div>
+    <div class="status" id="yt-src"></div>
+  </div>
+  <div class="block" id="companies"></div>
+  <div class="block card db-only">
+    <h3>기업 추가 등록</h3>
+    <p class="status">등록한 기업은 다음 달 자동 수집부터 실적·뉴스를 함께 추적합니다.</p>
+    <form class="add" id="f-co">
+      <div><label for="c-name">기업명</label><input id="c-name" required placeholder="예: Epiroc"></div>
+      <div><label for="c-country">국가</label><input id="c-country" placeholder="예: 스웨덴"></div>
+      <div><label for="c-prod">관련 제품군</label><input id="c-prod" placeholder="예: 브레이커, 드릴"></div>
+      <div><label for="c-note">메모</label><input id="c-note" placeholder="왜 추적하는지"></div>
+      <div><button class="btn" type="submit" id="c-btn">추가</button></div>
+    </form>
+    <div class="userlist" id="user-companies"></div>
+    <div class="status" id="db-status-c"></div>
+  </div>
+</section>
+
+<!-- ===== 국가 지표 ===== -->
+<section class="view" id="tab-country" role="tabpanel" hidden>
+  <p class="lead">수출 대상국을 입력하면 World Bank·IMF 공개 데이터에서 건설기계 수요와 연동되는 지표를 찾아 보여줍니다. 217개국 전체를 지원하며, 각 지표의 전 세계 백분위와 가중 합성 점수를 함께 제공합니다.</p>
+  <div class="cfind">
+    <label for="cq" style="font-size:.78rem;color:var(--fg-2)">국가 검색 (한글·영문·ISO 코드)</label>
+    <input id="cq" placeholder="예: 인도네시아, Vietnam, SAU" autocomplete="off">
+    <ul id="clist" hidden role="listbox"></ul>
+  </div>
+  <div class="links" id="quick"></div>
+  <div id="cpanel" hidden>
+    <div class="chead"><span class="big" id="c-name-big"></span><span class="m" id="c-meta"></span></div>
+    <div class="ind" id="cind"></div>
+
+    <div class="block grid g2">
+      <div class="card">
+        <h3>수요 신호 합성 점수</h3>
+        <p class="status" style="margin-top:4px">각 지표의 전 세계 백분위(0~100)를 가중 평균한 값입니다. 가중치는 제품 믹스에 맞게 조정하세요. 광산용(브레이커·DTH)이면 자원 지대 가중치를, 크레인·고소작업대면 투자·도시화 가중치를 높이는 식입니다.</p>
+        <div class="wgrid" id="weights"></div>
+        <div class="total"><span class="n" id="score"></span><span class="m" style="color:var(--muted);font-size:.82rem">/ 100</span></div>
+        <div class="score" id="scorebars" style="margin-top:8px"></div>
+      </div>
+      <div class="card">
+        <h3>판매목표 연동 계산기</h3>
+        <p class="status" style="margin-top:4px">목표 증가율 = 탄성치(β) × 선택 지표 전망치. 건설기계 수요는 투자 사이클을 증폭하므로 β는 보통 1.5~2.5에서 시작하고, 자사 국가별 과거 판매 데이터로 회귀해 보정하는 것을 권장합니다.</p>
+        <div class="calc">
+          <div><label for="k-base">기준연도 판매 (목표 연도 직전 해, 대수 또는 금액)</label><input id="k-base" type="number" value="100" min="0"></div>
+          <div><label for="k-drv">연동 지표</label><select id="k-drv">
+            <option value="gdp27">IMF 실질 GDP 성장률 전망 (2027)</option>
+            <option value="gdp26">IMF 실질 GDP 성장률 전망 (2026)</option>
+            <option value="gfcf">총고정자본형성 증가율 (최근)</option>
+            <option value="ind">산업(건설 포함) 부가가치 증가율 (최근)</option>
+          </select></div>
+          <div><label for="k-beta">탄성치 β</label><input id="k-beta" type="number" value="2" step="0.1" min="0"></div>
+          <div class="out" id="k-out"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block card">
+      <h3>API 밖의 지표 — 직접 확인 링크</h3>
+      <p class="status" style="margin-top:4px">건설 PMI, 시멘트 생산, 건축 허가, 정책금리, 환율은 월간 빈도라 판매목표의 분기 점검에 유용합니다. 아래 링크는 선택한 국가의 공개 통계 페이지로 연결됩니다.</p>
+      <div class="links" id="extlinks"></div>
+      <div id="natstat" class="status"></div>
+    </div>
+
+    <div class="block card db-only">
+      <h3>관심 국가로 저장</h3>
+      <p class="status" style="margin-top:4px">저장한 국가는 다음 달 자동 수집 때 해당국 건설·광산 뉴스와 지표 변화를 함께 정리합니다.</p>
+      <form class="add" id="f-cty">
+        <div><label for="t-note">메모 (예: 2027 목표 1,200대, 딜러 A사)</label><input id="t-note" placeholder="메모"></div>
+        <div><button class="btn" type="submit" id="t-btn">관심 국가에 추가</button></div>
+      </form>
+    </div>
+  </div>
+  <div class="block card db-only">
+    <h3>관심 국가 목록</h3>
+    <div class="userlist" id="user-countries"></div>
+    <div class="status" id="db-status-t"></div>
+  </div>
+  <div class="block card">
+    <h3>지표 카탈로그 — 왜 이 지표인가</h3>
+    <div class="tscroll"><table id="catalog"><thead><tr><th>지표</th><th>코드 / 출처</th><th>건설기계 수요와의 관계</th><th>성격</th></tr></thead><tbody></tbody></table></div>
+  </div>
+</section>
+
+<!-- ===== 특장차 수요 (베트남) ===== -->
+<section class="view" id="tab-vn" role="tabpanel" hidden>
+  <p class="lead" id="vn-summary"></p>
+  <div class="block">
+    <h2>한국에서 배우기: 판매와 거시지표의 관계 (2015~2025)</h2>
+    <div id="kr-cards"></div>
+  </div>
+  <div class="block card">
+    <h3>베트남 지표 현황</h3>
+    <div class="tscroll"><table id="vn-ind"><thead><tr><th>지표</th><th>최근값</th><th>출처</th><th>연동 제품</th></tr></thead><tbody></tbody></table></div>
+    <div class="grid g2" style="margin-top:12px">
+      <div><h4 style="margin:0 0 4px;font-size:.8rem;color:var(--fg-2)">컨테이너 항만 물동량 (백만 TEU)</h4><div id="vn-teu"></div></div>
+      <div><h4 style="margin:0 0 4px;font-size:.8rem;color:var(--fg-2)">1인당 GDP (USD, 2026~ IMF 전망)</h4><div id="vn-gdppc"></div></div>
+    </div>
+  </div>
+  <div class="block card">
+    <h3>베트남 수요 예측 계산기</h3>
+    <p class="status" style="margin-top:4px">한국에서 추정한 탄성치(β)를 출발점으로, 베트남 지표 전망치를 곱해 목표 연도 수요 증가율과 대수를 계산합니다. 기준값에는 자사 베트남 판매 또는 시장 규모(보유대수)를 넣으세요. 낮음·기본·높음 시나리오는 지표 전망치의 ±2%p입니다.</p>
+    <div id="vn-models"></div>
+  </div>
+  <div class="block card">
+    <h3>출처와 한계</h3>
+    <ul id="vn-caveats" style="font-size:.84rem;color:var(--fg-2);margin:6px 0 10px;padding-left:18px"></ul>
+    <div class="links" id="vn-sources"></div>
+  </div>
+</section>
+
+<!-- ===== 출처 ===== -->
+<section class="view" id="tab-sources" role="tabpanel" hidden>
+  <p class="lead">이 페이지는 매월 1회 자동 수집으로 갱신됩니다. 수집 주기와 1차 출처는 아래와 같습니다.</p>
+  <div class="card">
+    <h3>정기 통계 출처</h3>
+    <div class="tscroll"><table id="srcs"><thead><tr><th>출처</th><th>발표 주기</th><th>링크</th></tr></thead><tbody></tbody></table></div>
+  </div>
+  <div class="block card">
+    <h3>갱신 방식</h3>
+    <dl class="kv">
+      <dt>시장·기업 데이터</dt><dd>매월 초 예약 작업이 협회 통계·실적 발표·뉴스를 수집해 <code>data/market.json</code>을 갱신합니다. 사용자가 추가한 제품·기업·관심 국가는 저장소에서 읽어 조사 범위에 포함합니다.</dd>
+      <dt>거시지표</dt><dd>World Bank WDI(217개국, 16개 지표)와 IMF WEO(2030년까지 전망)를 같은 주기로 다시 내려받아 <code>data/macro.json</code>, <code>data/imf.json</code>을 교체합니다.</dd>
+      <dt>검증</dt><dd>2차 출처(기사)에서 가져온 수치는 출처를 함께 표기했습니다. 옐로우테이블 금액은 KHL 원문 확인을 권장합니다.</dd>
+    </dl>
+  </div>
+  <div class="foot">접속 통계: <a href="https://soosan-radar.goatcounter.com" target="_blank" rel="noopener">soosan-radar.goatcounter.com</a> (GoatCounter, 방문자·페이지뷰·탭별 조회)</div>
+  <div class="foot">마지막 갱신: <span id="updated2"></span> · 지표 데이터 기준일: <span id="macro-date"></span></div>
+</section>
+
+</main>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r=document) => r.querySelector(s);
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt = (v, d=1) => (v == null || isNaN(v)) ? '—' : Number(v).toLocaleString('ko-KR', {maximumFractionDigits:d, minimumFractionDigits:0});
+
+/* ---------- 탭 ---------- */
+const tabs = [...document.querySelectorAll('nav.tabs button')];
+function showTab(id, push=true){
+  tabs.forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === id)));
+  document.querySelectorAll('section.view').forEach(s => s.hidden = (s.id !== 'tab-'+id));
+  try { localStorage.setItem('radar.tab', id); } catch(e){}
+  if (push) history.replaceState(null, '', '#'+id);
+  try { if (push && window.goatcounter && goatcounter.count) goatcounter.count({path: '/tab/'+id, title: '탭: '+id, event: true}); } catch(e){}
+}
+tabs.forEach(b => b.addEventListener('click', () => showTab(b.dataset.tab)));
+(function(){ let t = (location.hash||'').slice(1); if (!tabs.some(b=>b.dataset.tab===t)) { try { t = localStorage.getItem('radar.tab') || 'overview'; } catch(e){ t='overview'; } } if (!tabs.some(b=>b.dataset.tab===t)) t='overview'; showTab(t,false); })();
+
+/* ---------- 지표 카탈로그 ---------- */
+const KO = {ABW:'아루바',AFG:'아프가니스탄',AGO:'앙골라',ALB:'알바니아',ARE:'아랍에미리트',ARG:'아르헨티나',ARM:'아르메니아',AUS:'호주',AUT:'오스트리아',AZE:'아제르바이잔',BGD:'방글라데시',BEL:'벨기에',BGR:'불가리아',BHR:'바레인',BIH:'보스니아',BLR:'벨라루스',BOL:'볼리비아',BRA:'브라질',BRN:'브루나이',BWA:'보츠와나',CAN:'캐나다',CHE:'스위스',CHL:'칠레',CHN:'중국',CIV:'코트디부아르',CMR:'카메룬',COD:'콩고민주공화국',COG:'콩고',COL:'콜롬비아',CRI:'코스타리카',CUB:'쿠바',CYP:'키프로스',CZE:'체코',DEU:'독일',DNK:'덴마크',DOM:'도미니카공화국',DZA:'알제리',ECU:'에콰도르',EGY:'이집트',ESP:'스페인',EST:'에스토니아',ETH:'에티오피아',FIN:'핀란드',FJI:'피지',FRA:'프랑스',GAB:'가봉',GBR:'영국',GEO:'조지아',GHA:'가나',GIN:'기니',GRC:'그리스',GTM:'과테말라',GUY:'가이아나',HKG:'홍콩',HND:'온두라스',HRV:'크로아티아',HUN:'헝가리',IDN:'인도네시아',IND:'인도',IRL:'아일랜드',IRN:'이란',IRQ:'이라크',ISL:'아이슬란드',ISR:'이스라엘',ITA:'이탈리아',JAM:'자메이카',JOR:'요르단',JPN:'일본',KAZ:'카자흐스탄',KEN:'케냐',KGZ:'키르기스스탄',KHM:'캄보디아',KOR:'대한민국',KWT:'쿠웨이트',LAO:'라오스',LBN:'레바논',LBY:'리비아',LKA:'스리랑카',LTU:'리투아니아',LUX:'룩셈부르크',LVA:'라트비아',MAR:'모로코',MDG:'마다가스카르',MEX:'멕시코',MLI:'말리',MMR:'미얀마',MNG:'몽골',MOZ:'모잠비크',MRT:'모리타니',MUS:'모리셔스',MWI:'말라위',MYS:'말레이시아',NAM:'나미비아',NER:'니제르',NGA:'나이지리아',NIC:'니카라과',NLD:'네덜란드',NOR:'노르웨이',NPL:'네팔',NZL:'뉴질랜드',OMN:'오만',PAK:'파키스탄',PAN:'파나마',PER:'페루',PHL:'필리핀',PNG:'파푸아뉴기니',POL:'폴란드',PRK:'북한',PRT:'포르투갈',PRY:'파라과이',QAT:'카타르',ROU:'루마니아',RUS:'러시아',RWA:'르완다',SAU:'사우디아라비아',SDN:'수단',SEN:'세네갈',SGP:'싱가포르',SLV:'엘살바도르',SRB:'세르비아',SVK:'슬로바키아',SVN:'슬로베니아',SWE:'스웨덴',SYR:'시리아',TCD:'차드',THA:'태국',TJK:'타지키스탄',TKM:'투르크메니스탄',TUN:'튀니지',TUR:'튀르키예',TWN:'대만',TZA:'탄자니아',UGA:'우간다',UKR:'우크라이나',URY:'우루과이',USA:'미국',UZB:'우즈베키스탄',VEN:'베네수엘라',VNM:'베트남',YEM:'예멘',ZAF:'남아프리카공화국',ZMB:'잠비아',ZWE:'짐바브웨'};
+const CAT = [
+  {code:'NY.GDP.MKTP.KD.ZG', name:'실질 GDP 성장률', unit:'%', src:'World Bank', rel:'동행', why:'전체 수요 기반. 단독 설명력은 중간이지만 모든 제품군에 공통. IMF 전망치로 2년 앞을 보완.', w:'gdp', dir:1},
+  {code:'IMF.NGDP_RPCH', name:'실질 GDP 성장률 전망', unit:'%', src:'IMF WEO', rel:'선행', why:'판매목표 설정의 기준 연도(2026·2027) 전망치. 4월·10월 갱신.', w:'gdp', dir:1, imf:'NGDP_RPCH'},
+  {code:'NE.GDI.FTOT.KD.ZG', name:'총고정자본형성(GFCF) 증가율', unit:'%', src:'World Bank', rel:'동행·선행', why:'건설·설비 투자의 직접 지표. 건설기계 수요와 가장 상관이 높고, 장비 수요는 이 값을 1.5~2.5배 증폭하는 경향.', w:'inv', dir:1},
+  {code:'NE.GDI.FTOT.ZS', name:'GFCF / GDP', unit:'%', src:'World Bank', rel:'구조', why:'투자 집약도. 25% 이상이면 인프라·건설 주도 경제(베트남·인도·인도네시아), 20% 미만이면 교체 수요 중심 시장.', w:'inv', dir:1},
+  {code:'NE.GDI.TOTL.KD.ZG', name:'총자본형성 증가율', unit:'%', src:'World Bank', rel:'동행', why:'GFCF가 결측인 국가의 대체 지표 (재고 포함).', w:null, dir:1},
+  {code:'NV.IND.TOTL.KD.ZG', name:'산업(건설 포함) 부가가치 증가율', unit:'%', src:'World Bank', rel:'동행', why:'건설업이 포함된 산업 생산 성장률. 건설업 단독 통계가 없는 국가에서 건설경기 proxy.', w:'ind', dir:1},
+  {code:'NY.GDP.TOTL.RT.ZS', name:'천연자원 지대 / GDP', unit:'%', src:'World Bank', rel:'구조', why:'광산·석유 의존도. 광산용 브레이커·DTH 드릴·대형 장비 수요의 구조적 기반. (최신 2021)', w:'res', dir:1},
+  {code:'NY.GDP.MINR.RT.ZS', name:'광물 지대 / GDP', unit:'%', src:'World Bank', rel:'구조', why:'금·구리·니켈 등 비연료 광물. 경암 광산 장비(DTH, 대형 브레이커) 수요.', w:'res', dir:1},
+  {code:'NY.GDP.COAL.RT.ZS', name:'석탄 지대 / GDP', unit:'%', src:'World Bank', rel:'구조', why:'노천 석탄 광산(인도네시아·인도·몽골·호주)의 토공 장비 수요.', w:'res', dir:1},
+  {code:'SP.URB.GROW', name:'도시인구 증가율', unit:'%', src:'World Bank', rel:'구조·선행', why:'주택·도로·상하수도 등 도시 인프라 수요의 장기 동인. 아프리카·남아시아에서 높음.', w:'urb', dir:1},
+  {code:'FP.CPI.TOTL.ZG', name:'소비자물가 상승률', unit:'%', src:'World Bank', rel:'역행', why:'고물가는 금리 인상과 건설비 상승으로 이어져 장비 투자를 지연시킴. (IMF 전망 포함)', w:'macro', dir:-1, imf:'PCPIPCH'},
+  {code:'FR.INR.LEND', name:'대출 금리', unit:'%', src:'World Bank', rel:'역행·선행', why:'장비 금융(리스·할부) 비용. 금리 하락 6~12개월 후 장비 수요 회복 패턴.', w:'macro', dir:-1},
+  {code:'PA.NUS.FCRF', name:'환율 (현지통화/USD)', unit:'LCU', src:'World Bank', rel:'역행', why:'현지통화 절하 시 수입 장비 가격 상승 → 수요 위축·중국산 전환. 연간 변화율을 함께 보세요.', w:null, dir:-1},
+  {code:'BX.KLT.DINV.WD.GD.ZS', name:'외국인직접투자 / GDP', unit:'%', src:'World Bank', rel:'선행', why:'공장·플랜트·산업단지 건설의 선행 지표. 고소작업대·크레인·활선차(전력 인프라) 수요.', w:'inv', dir:1},
+  {code:'IMF.GGXCNL_NGDP', name:'재정수지 / GDP', unit:'%', src:'IMF WEO', rel:'구조', why:'공공 인프라 지출 여력. 큰 적자국은 인프라 예산 삭감 위험.', w:null, dir:1, imf:'GGXCNL_NGDP'},
+  {code:'NY.GDP.MKTP.CD', name:'명목 GDP', unit:'USD bn', src:'World Bank', rel:'규모', why:'시장 규모. 성장률 지표와 곱해 절대 수요 증분을 가늠.', w:null, dir:1},
+  {code:'NY.GDP.PCAP.CD', name:'1인당 GDP', unit:'USD', src:'World Bank', rel:'구조', why:'기계화율·렌탈 시장 성숙도. 고소득국은 교체·전동화·안전규제 수요, 중저소득국은 신규 보급 수요.', w:null, dir:1},
+  {code:'SP.POP.TOTL', name:'인구', unit:'백만', src:'World Bank', rel:'규모', why:'장비 보급률(인구당 장비 대수) 계산의 분모.', w:null, dir:1}
+];
+const WEIGHTS = [
+  {k:'gdp', label:'GDP 성장(현재+전망)', v:25},
+  {k:'inv', label:'투자(GFCF·FDI)', v:30},
+  {k:'ind', label:'산업·건설 생산', v:15},
+  {k:'res', label:'자원·광산 지대', v:15},
+  {k:'urb', label:'도시화', v:10},
+  {k:'macro', label:'금리·물가 안정(역)', v:5}
+];
+
+/* ---------- 데이터 로드 ---------- */
+let M=null, WB=null, IMF=null, PCT={};
+const dataFail = () => { $('#updated').textContent = '데이터를 불러오지 못했습니다'; $('#headline').textContent = '데이터 파일(data/market.json)을 읽지 못했습니다. 페이지를 새로고침해 주세요.'; };
+Promise.all([
+  fetch('data/market.json').then(r=>r.json()),
+  fetch('data/macro.json').then(r=>r.json()),
+  fetch('data/imf.json').then(r=>r.json())
+]).then(([m, wb, imf]) => { M=m; WB=wb; IMF=imf; renderMarket(); buildPercentiles(); initCountry(); }).catch(e => { console.error(e); dataFail(); });
+
+/* ---------- 개요·제품·기업 렌더 ---------- */
+function renderMarket(){
+  $('#updated').textContent = '갱신 ' + M.updated;
+  $('#updated2').textContent = M.updated; $('#macro-date').textContent = (WB && WB.fetched) || '';
+  $('#headline').textContent = M.headline;
+  const k = $('#kpis'); k.innerHTML='';
+  M.kpis.forEach(x => {
+    const t = el('div','tile'); t.innerHTML = `<div class="lab">${esc(x.label)}</div><div class="val">${esc(x.value)}</div><div class="delta ${x.dir}">${esc(x.delta)}</div><div class="note">${esc(x.note)}</div><div class="src">${esc(x.source)}</div>`; k.appendChild(t);
+  });
+  const r = $('#regions'); r.innerHTML='';
+  M.regions.forEach(x => {
+    const cls = /강세|회복/.test(x.signal) && !/조정/.test(x.signal) ? 'up' : /부진/.test(x.signal) ? 'down' : 'mix';
+    const d = el('div','region '+cls); d.innerHTML = `<div class="h"><strong>${esc(x.region)}</strong><span class="chip ${cls==='up'?'sig-up':cls==='down'?'sig-down':''}">${esc(x.signal)}</span></div><p>${esc(x.evidence)}</p><div class="ko">관련: ${esc(x.ko_relevance)}</div>`; r.appendChild(d);
+  });
+  // 코마츠 수요 히트 테이블 (diverging)
+  const kd = M.komatsu_demand; $('#kd-title').textContent = kd.title; $('#kd-src').textContent = '출처: ' + kd.source + ' · 색: 파랑 증가 / 빨강 감소';
+  const tb = $('#kd-table'); tb.innerHTML = '<thead><tr><th>지역</th>' + kd.months.map(m=>`<th class="num">${esc(m)}</th>`).join('') + '</tr></thead>';
+  const body = el('tbody');
+  const mx = 55;
+  kd.rows.forEach(row => {
+    const tr = el('tr'); tr.innerHTML = `<td>${esc(row.region)}</td>` + row.v.map(v => { const a = Math.min(Math.abs(v)/mx, 1); const col = v>=0 ? 'var(--div-pos)' : 'var(--div-neg)'; const alpha = 0.12 + 0.68*a; return `<td class="c"><span style="background:color-mix(in srgb, ${col} ${Math.round(alpha*100)}%, var(--div-mid))">${v>0?'+':''}${v}%</span></td>`; }).join(''); body.appendChild(tr);
+  });
+  tb.appendChild(body);
+  // 뉴스
+  const n = $('#news'); n.innerHTML='';
+  M.news.forEach(x => { const li = el('li'); li.innerHTML = `<span class="d">${esc(x.d)}</span><span class="chip">${esc(x.tag)}</span> <a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.t)}</a>`; n.appendChild(li); });
+  // 제품
+  const p = $('#products'); p.innerHTML='';
+  M.products.forEach(x => {
+    const c = el('div','card');
+    c.innerHTML = `<div class="h"><span class="grp">${esc(x.group)}</span><h3>${esc(x.name)}</h3>${x.own?'<span class="chip own">자사 제품</span>':''}</div>
+      <p style="margin:0 0 4px;font-size:.9rem">${esc(x.market)}</p>
+      <div class="cols">
+        <div><h4>수요 동인</h4><ul>${x.drivers.map(d=>`<li>${esc(d)}</li>`).join('')}</ul></div>
+        <div><h4>주요 경쟁사 <span style="font-weight:400;color:var(--muted)">(공식 사이트 확인 여부)</span></h4><ul>${x.competitors.map(d => typeof d === 'string'
+            ? `<li>${esc(d.replace(/ — 미검증$/,''))} <span class="chip" title="공식 사이트 미확인">미검증</span></li>`
+            : `<li>${esc(d.n)} <a class="chip" href="${esc(d.src)}" target="_blank" rel="noopener" title="${esc(d.note||'공식 사이트에서 제품군 확인')}" style="text-decoration:none;color:var(--pos)">확인 ${esc(d.checked)}</a></li>`).join('')}</ul></div>
+        <div style="grid-column:1/-1"><h4>신제품·전략 아이디어 시드</h4><ul>${x.ideas.map(d=>`<li>${esc(d)}</li>`).join('')}</ul></div>
+      </div>
+      <div class="ind-tags">${x.indicators.map(code => { const ci = CAT.find(c=>c.code===code); return `<span class="chip" title="${esc(code)}">${esc(ci?ci.name:code)}</span>`; }).join('')}</div>`;
+    p.appendChild(c);
+  });
+  const ps = $('#pstats tbody'); ps.innerHTML='';
+  M.product_stats.forEach(x => { const tr = el('tr'); tr.innerHTML = `<td>${esc(x.product)}</td><td>${esc(x.stat)}</td><td style="color:var(--muted)">${esc(x.source)}</td>`; ps.appendChild(tr); });
+  // 옐로우테이블
+  const yt = M.yellow_table; $('#yt-title').textContent = yt.title; $('#yt-src').textContent = '출처: ' + yt.source + ' · Top50 합계 $' + yt.total_top50_usd_bn + 'B · 국가별 점유: ' + yt.country_share.map(c=>c.c+' '+c.v+'%').join(', ');
+  const yb = $('#yt-bars'); yb.innerHTML=''; const max = Math.max(...yt.rows.map(r=>r.v));
+  yt.rows.forEach(r => { const kr = r.c==='KR'; yb.appendChild(el('div','n'+(kr?' kr':''), `${r.r}. ${esc(r.n)} <span class="chip">${esc(r.c)}</span>`)); const b = el('div','b'+(kr?' kr':'')); b.style.width = (r.v/max*100)+'%'; b.title = r.n+' $'+r.v+'B'; yb.appendChild(b); yb.appendChild(el('div','v', fmt(r.v,1))); });
+  // 기업
+  const co = $('#companies'); co.innerHTML='';
+  M.companies.forEach(x => {
+    const c = el('div','card co');
+    c.innerHTML = `<div><div class="name">${esc(x.name)}<div class="en">${esc(x.en)}</div></div><div class="meta"><span class="chip ${x.tier==='자사'?'own':''}">${esc(x.tier)}</span> ${x.yt_rank?`옐로우테이블 ${x.yt_rank}위 · 점유 ${x.yt_share}% · $${x.sales_2025_usd_bn}B`:''}</div></div>
+      <div><p>${esc(x.latest)}</p><div class="watch">관찰 포인트: ${esc(x.watch)}</div><div class="srcs">${x.sources.map(s=>`<a href="${esc(s.u)}" target="_blank" rel="noopener">${esc(s.t)}</a>`).join('')}</div></div>`;
+    co.appendChild(c);
+  });
+  // 출처
+  const st = $('#srcs tbody'); st.innerHTML='';
+  M.sources.forEach(x => { const tr = el('tr'); tr.innerHTML = `<td>${esc(x.n)}</td><td>${esc(x.cadence)}</td><td><a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.u.replace(/^https?:\/\//,'').replace(/\/$/,''))}</a></td>`; st.appendChild(tr); });
+  // 카탈로그
+  const ct = $('#catalog tbody'); ct.innerHTML='';
+  CAT.forEach(c => { const tr = el('tr'); tr.innerHTML = `<td>${esc(c.name)}</td><td style="font-family:var(--mono);font-size:.76rem">${esc(c.imf||c.code)}<br><span style="color:var(--muted)">${esc(c.src)}</span></td><td>${esc(c.why)}</td><td><span class="chip">${esc(c.rel)}</span></td>`; ct.appendChild(tr); });
+}
+
+/* ---------- 지표 헬퍼 ---------- */
+function latest(series){ if(!series) return null; const ys = Object.keys(series).sort(); if(!ys.length) return null; const y = ys[ys.length-1]; return {y, v: series[y]}; }
+function wbSeries(code, iso){ return WB && WB.data[code] && WB.data[code][iso] || null; }
+function imfSeries(code, iso){ return IMF && IMF.data[code] && IMF.data[code][iso] || null; }
+function seriesFor(c, iso){
+  if (c.imf && (c.code.startsWith('IMF.'))) return imfSeries(c.imf, iso);
+  return wbSeries(c.code, iso);
+}
+function headlineValue(c, iso){
+  if (c.code==='IMF.NGDP_RPCH'){ const s = imfSeries('NGDP_RPCH', iso); return s && s['2027']!=null ? {y:'2027F', v:s['2027']} : null; }
+  if (c.code==='IMF.GGXCNL_NGDP'){ const s = imfSeries('GGXCNL_NGDP', iso); return s && s['2026']!=null ? {y:'2026F', v:s['2026']} : latest(s); }
+  return latest(seriesFor(c, iso));
+}
+function buildPercentiles(){
+  CAT.forEach(c => {
+    const vals = [];
+    WB.countries.forEach(ct => { const h = headlineValue(c, ct.id); if (h && h.v!=null && isFinite(h.v)) vals.push(h.v); });
+    vals.sort((a,b)=>a-b); PCT[c.code] = vals;
+  });
+}
+function pct(code, v){ const a = PCT[code]; if(!a||!a.length||v==null) return null; let lo=0, hi=a.length; while(lo<hi){ const m=(lo+hi)>>1; if(a[m] < v) lo=m+1; else hi=m; } let eq=lo; while(eq<a.length && a[eq]===v) eq++; return Math.round(((lo+eq)/2)/a.length*100); }
+function spark(series, opts={}){
+  if(!series) return '';
+  const ys = Object.keys(series).sort(); if (ys.length<2) return '';
+  const vals = ys.map(y=>series[y]); const W=240,H=46,px=4,py=6;
+  let mn=Math.min(...vals,0), mx=Math.max(...vals,0); if(mx===mn){mx=mn+1;}
+  const x = i => px + i*(W-2*px)/(ys.length-1); const y = v => H-py-(v-mn)/(mx-mn)*(H-2*py);
+  const fc = (opts.forecastFrom!=null) ? ys.findIndex(yy => +yy >= opts.forecastFrom) : -1;
+  const pt = i => `${x(i).toFixed(1)},${y(vals[i]).toFixed(1)}`;
+  const path = (from, to) => { let s=''; for (let i=from;i<=to;i++) s += (s?' L':'M')+pt(i); return s; };
+  const solidEnd = fc>0 ? fc-1 : (fc===0 ? 0 : ys.length-1);
+  const d = path(0, solidEnd);
+  const dF = (fc>=0 && fc < ys.length) ? path(Math.max(fc-1,0), ys.length-1) : '';
+  const zero = y(0); const last = ys.length-1;
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">
+    <line x1="${px}" x2="${W-px}" y1="${zero.toFixed(1)}" y2="${zero.toFixed(1)}" stroke="var(--line)" stroke-width="1"/>
+    <path d="${d}" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round"/>
+    ${dF?`<path d="${dF}" fill="none" stroke="var(--s1)" stroke-width="2" stroke-dasharray="4 3"/>`:''}
+    <circle cx="${x(last).toFixed(1)}" cy="${y(vals[last]).toFixed(1)}" r="3.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/>
+    <text x="${px}" y="${H-1}" font-size="8" fill="var(--muted)">${ys[0]}</text><text x="${W-px}" y="${H-1}" font-size="8" text-anchor="end" fill="var(--muted)">${ys[last]}</text>
+  </svg>`;
+}
+
+/* ---------- 국가 검색 ---------- */
+let CUR=null; const Wv = Object.fromEntries(WEIGHTS.map(w=>[w.k,w.v]));
+function cname(ct){ return KO[ct.id] ? `${KO[ct.id]} (${ct.name})` : ct.name; }
+function initCountry(){
+  const q = $('#cq'), list = $('#clist');
+  const quick = ['IDN','IND','VNM','SAU','ARE','BRA','MEX','TUR','AUS','USA','DEU','CHL','PER','ZAF','PHL','THA','MNG','ETH','KAZ','POL'];
+  const qk = $('#quick'); quick.forEach(iso => { const ct = WB.countries.find(c=>c.id===iso); if(!ct) return; const a = el('a',null, esc(KO[iso]||ct.name)); a.href='#country'; a.addEventListener('click', e=>{ e.preventDefault(); select(iso); }); qk.appendChild(a); });
+  let items=[], sel=-1;
+  function render(){ list.innerHTML=''; items.forEach((ct,i)=>{ const li=el('li',null,`${esc(cname(ct))}<span class="iso">${ct.id}</span>`); li.setAttribute('role','option'); li.setAttribute('aria-selected', String(i===sel)); li.addEventListener('mousedown', e=>{ e.preventDefault(); select(ct.id); }); list.appendChild(li); }); list.hidden = !items.length; }
+  q.addEventListener('input', () => { const s = q.value.trim().toLowerCase(); if(!s){ items=[]; render(); return; } items = WB.countries.filter(ct => ct.name.toLowerCase().includes(s) || ct.id.toLowerCase()===s || ct.iso2.toLowerCase()===s || (KO[ct.id]||'').includes(s)).slice(0,12); sel = items.length?0:-1; render(); });
+  q.addEventListener('keydown', e => { if(e.key==='ArrowDown'){ sel=Math.min(sel+1,items.length-1); render(); e.preventDefault(); } else if(e.key==='ArrowUp'){ sel=Math.max(sel-1,0); render(); e.preventDefault(); } else if(e.key==='Enter'){ if(items[sel]) { select(items[sel].id); e.preventDefault(); } } else if(e.key==='Escape'){ list.hidden=true; } });
+  q.addEventListener('blur', () => setTimeout(()=>{ list.hidden=true; }, 150));
+  // 가중치 UI
+  const wg = $('#weights'); WEIGHTS.forEach(w => { const d = el('div'); d.innerHTML = `<label for="w-${w.k}">${esc(w.label)} <span id="wv-${w.k}" style="font-family:var(--mono)">${w.v}</span></label><input type="range" id="w-${w.k}" min="0" max="50" value="${w.v}">`; wg.appendChild(d); d.querySelector('input').addEventListener('input', e => { Wv[w.k]=+e.target.value; $('#wv-'+w.k).textContent=e.target.value; if(CUR) renderScore(CUR); }); });
+  ['#k-base','#k-drv','#k-beta'].forEach(s => $(s).addEventListener('input', () => { if(CUR) renderCalc(CUR); }));
+  try { const last = localStorage.getItem('radar.country'); if (last && WB.countries.some(c=>c.id===last)) select(last, false); else select('IDN', false); } catch(e){ select('IDN', false); }
+}
+function select(iso, focusTab=true){
+  const ct = WB.countries.find(c=>c.id===iso); if(!ct) return; CUR = ct;
+  try { localStorage.setItem('radar.country', iso); } catch(e){}
+  $('#cq').value = cname(ct); $('#clist').hidden = true;
+  $('#cpanel').hidden = false;
+  $('#c-name-big').textContent = cname(ct);
+  const gdp = latest(wbSeries('NY.GDP.MKTP.CD', iso)), pop = latest(wbSeries('SP.POP.TOTL', iso)), inc = ct.income;
+  $('#c-meta').textContent = `${ct.region} · ${inc} · GDP $${gdp?fmt(gdp.v,0):'—'}B (${gdp?gdp.y:''}) · 인구 ${pop?fmt(pop.v,1):'—'}백만 · 수도 ${ct.capital||'—'}`;
+  const box = $('#cind'); box.innerHTML='';
+  CAT.forEach(c => {
+    const s = seriesFor(c, iso); const h = headlineValue(c, iso);
+    const card = el('div','card');
+    const p = (h && c.w) ? pct(c.code, h.v) : null;
+    const pshow = p==null ? '' : `<div class="pct">전 세계 백분위 ${c.dir<0 ? (100-p) : p} ${c.dir<0?'(낮을수록 유리)':''}</div>`;
+    let extra='';
+    if (c.code==='PA.NUS.FCRF' && s){ const ys=Object.keys(s).sort(); if(ys.length>=2){ const a=s[ys[ys.length-2]], b=s[ys[ys.length-1]]; if(a) extra = `<small>전년비 ${b>a?'절하':'절상'} ${fmt(Math.abs((b/a-1)*100),1)}%</small>`; } }
+    if (c.code==='NY.GDP.MKTP.KD.ZG'){ const f = imfSeries('NGDP_RPCH', iso); if (f && f['2026']!=null) extra = `<small>IMF 2026F ${fmt(f['2026'],1)}%</small>`; }
+    if (c.code==='FP.CPI.TOTL.ZG'){ const f = imfSeries('PCPIPCH', iso); if (f && f['2026']!=null) extra = `<small>IMF 2026F ${fmt(f['2026'],1)}%</small>`; }
+    card.innerHTML = `<div class="t"><span>${esc(c.name)}</span><span class="rel">${esc(c.rel)}</span></div>
+      <div class="v">${h ? fmt(h.v, c.unit==='USD'||c.unit==='USD bn'||c.unit==='백만' ? (h.v>100?0:1) : 1) : '—'}<small>${h ? esc(c.unit)+' · '+h.y : '데이터 없음'}</small>${extra}</div>
+      ${spark(s, c.imf ? {forecastFrom:2026} : {})}
+      ${pshow}<div class="why">${esc(c.why)}</div>`;
+    box.appendChild(card);
+  });
+  renderScore(ct); renderCalc(ct); renderLinks(ct);
+  if (focusTab) showTab('country');
+}
+function groupPct(ct, k){
+  const cs = CAT.filter(c => c.w===k); const ps=[];
+  cs.forEach(c => { const h = headlineValue(c, ct.id); if(!h) return; const p = pct(c.code, h.v); if(p==null) return; ps.push(c.dir<0 ? 100-p : p); });
+  return ps.length ? ps.reduce((a,b)=>a+b,0)/ps.length : null;
+}
+function renderScore(ct){
+  const sb = $('#scorebars'); sb.innerHTML=''; let num=0, den=0;
+  WEIGHTS.forEach(w => { const p = groupPct(ct, w.k); const row = el('div','srow'); row.innerHTML = `<span>${esc(w.label)}</span><div class="track"><div class="fill" style="width:${p==null?0:p}%"></div></div><span class="pv">${p==null?'—':Math.round(p)}</span>`; sb.appendChild(row); if(p!=null && Wv[w.k]>0){ num += p*Wv[w.k]; den += Wv[w.k]; } });
+  $('#score').textContent = den ? Math.round(num/den) : '—';
+}
+function renderCalc(ct){
+  const base = +$('#k-base').value || 0, drv = $('#k-drv').value, beta = +$('#k-beta').value || 0;
+  let g=null, label='', baseY='', targetY='', caveat='';
+  if (drv==='gdp27'){ const s=imfSeries('NGDP_RPCH', ct.id); g = s && s['2027']; label='IMF 2027 실질 GDP 성장률 전망'; baseY='2026년 판매(실적 또는 전망)'; targetY='2027년'; }
+  else if (drv==='gdp26'){ const s=imfSeries('NGDP_RPCH', ct.id); g = s && s['2026']; label='IMF 2026 실질 GDP 성장률 전망'; baseY='2025년 판매 실적'; targetY='2026년'; }
+  else if (drv==='gfcf'){ const h=latest(wbSeries('NE.GDI.FTOT.KD.ZG', ct.id)) || latest(wbSeries('NE.GDI.TOTL.KD.ZG', ct.id)); g = h && h.v; label = 'GFCF 증가율 '+(h?h.y:''); baseY=(h?h.y:'최근')+'년 판매 실적'; targetY=(h?(+h.y+1):'다음')+'년'; caveat=' 이 지표는 과거 실적치이므로, 투자 추세가 이어진다는 가정 아래 쓰는 대용치입니다.'; }
+  else { const h=latest(wbSeries('NV.IND.TOTL.KD.ZG', ct.id)); g = h && h.v; label='산업 부가가치 증가율 '+(h?h.y:''); baseY=(h?h.y:'최근')+'년 판매 실적'; targetY=(h?(+h.y+1):'다음')+'년'; caveat=' 이 지표는 과거 실적치이므로, 추세가 이어진다는 가정 아래 쓰는 대용치입니다.'; }
+  const out = $('#k-out');
+  if (g==null){ out.textContent = '선택한 지표의 데이터가 없습니다. 다른 지표를 선택하세요.'; return; }
+  const growth = beta*g; const target = base*(1+growth/100);
+  out.innerHTML = `<div style="font-size:.78rem;color:var(--fg-2);margin-bottom:4px">기준: ${esc(baseY)} → 목표 연도: <strong>${esc(targetY)}</strong></div>${esc(label)} <strong>${fmt(g,1)}%</strong> × β ${beta} = 목표 증가율 <strong>${fmt(growth,1)}%</strong> → <strong>${esc(targetY)} 제안 목표 ${fmt(target, base>=1000?0:1)}</strong> (기준 ${fmt(base,0)})<br><span style="font-size:.78rem;color:var(--muted)">가이드: 금리·환율 백분위가 낮거나(30 이하) 재정수지 적자가 크면 β를 낮추고, 광산 호황·FDI 급증국은 높이세요. 실제 과거 판매 데이터로 β를 추정하면 정확도가 올라갑니다.${esc(caveat)}</span>`;
+}
+const NAT = {
+  IDN:[['BPS 인도네시아 통계청','https://www.bps.go.id'],['Hinabi (중장비협회)','https://hinabi.or.id'],['United Tractors 월간 코마츠 판매','https://www.unitedtractors.com/en/investor-relations/']],
+  IND:[['ICEMA','https://www.icema.in'],['MOSPI 산업생산지수','https://www.mospi.gov.in'],['RBI 통계','https://www.rbi.org.in']],
+  USA:[['AEM','https://www.aem.org'],['Census 건설지출','https://www.census.gov/construction/c30/'],['Dodge Momentum Index','https://www.construction.com/']],
+  CHN:[['CCMA 중국공정기계공업협회','http://www.cncma.org'],['국가통계국 고정자산투자','https://www.stats.gov.cn']],
+  JPN:[['CEMA 일본건설기계공업회','https://www.cema.or.jp'],['국토교통성 건설공사 수주','https://www.mlit.go.jp']],
+  KOR:[['한국건설기계산업협회','https://www.kocema.org'],['국토부 건설기계 등록 통계','https://stat.molit.go.kr'],['통계청 건설수주','https://kosis.kr']],
+  VNM:[['GSO 베트남 통계청','https://www.gso.gov.vn']],
+  SAU:[['GASTAT','https://www.stats.gov.sa']],
+  BRA:[['Sobratema','https://www.sobratema.org.br'],['IBGE','https://www.ibge.gov.br']],
+  AUS:[['ABS 건설활동','https://www.abs.gov.au'],['CCF','https://www.civilcontractors.com']],
+  TUR:[['İMDER (건설기계협회)','https://www.imder.org.tr'],['TÜİK','https://www.tuik.gov.tr']],
+  DEU:[['VDMA 건설기계','https://www.vdma.org'],['Destatis','https://www.destatis.de']],
+  MEX:[['INEGI','https://www.inegi.org.mx']],
+  ZAF:[['Stats SA','https://www.statssa.gov.za']],
+  MNG:[['NSO 몽골','https://www.1212.mn']],
+  CHL:[['INE 칠레','https://www.ine.gob.cl'],['Cochilco 구리','https://www.cochilco.cl']],
+  PER:[['INEI','https://www.inei.gob.pe'],['MINEM 광업','https://www.minem.gob.pe']],
+  PHL:[['PSA','https://psa.gov.ph']],
+  THA:[['NESDC','https://www.nesdc.go.th']],
+  ARE:[['FCSC','https://fcsc.gov.ae']]
+};
+function renderLinks(ct){
+  const slug = ct.name.toLowerCase().replace(/[^a-z ]/g,'').trim().replace(/ +/g,'-');
+  const te = [['총고정자본형성','gross-fixed-capital-formation'],['건설생산','construction-output'],['시멘트 생산','cement-production'],['건축허가','building-permits'],['정책금리','interest-rate'],['환율','currency'],['PMI','manufacturing-pmi'],['정부 지출','government-spending']];
+  const L = $('#extlinks'); L.innerHTML='';
+  te.forEach(([n,p]) => { const a = el('a',null,`${esc(n)} · TE`); a.href = `https://tradingeconomics.com/${slug}/${p}`; a.target='_blank'; a.rel='noopener'; L.appendChild(a); });
+  const wbL = el('a',null,'World Bank 국가 페이지'); wbL.href=`https://data.worldbank.org/country/${ct.id}`; wbL.target='_blank'; wbL.rel='noopener'; L.appendChild(wbL);
+  const imfL = el('a',null,'IMF 국가 전망'); imfL.href=`https://www.imf.org/external/datamapper/profile/${ct.id}`; imfL.target='_blank'; imfL.rel='noopener'; L.appendChild(imfL);
+  const ns = $('#natstat'); ns.innerHTML='';
+  if (NAT[ct.id]) ns.innerHTML = '국가 통계·협회: ' + NAT[ct.id].map(([n,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a>`).join(' · ');
+  else ns.textContent = '이 국가의 건설기계 협회 통계는 등록되어 있지 않습니다. 관심 국가로 저장하면 다음 수집 때 출처를 찾아 추가합니다.';
+}
+
+/* ---------- 특장차 수요 (베트남) ---------- */
+function barLine(sales, ind, opts={}){
+  // 두 패널(위: 판매 막대, 아래: 지표 선)이 같은 연도 축을 공유. 이중축 대신 분리 패널.
+  const ys = [...new Set([...Object.keys(sales), ...Object.keys(ind)])].sort();
+  const W=560, H=190, L=44, R=10, top=10, gap=18, ph=(H-top-gap-26)/2;
+  const x = i => L + (i+0.5)*(W-L-R)/ys.length;
+  const bw = Math.max(6, (W-L-R)/ys.length*0.6);
+  const sv = ys.map(y=>sales[y]); const smax = Math.max(...sv.filter(v=>v!=null));
+  const iv = ys.map(y=>ind[y]); const inum = iv.filter(v=>v!=null); let imin=Math.min(...inum,0), imax=Math.max(...inum,0); if(imax===imin) imax=imin+1;
+  const ys1 = v => top + ph - v/smax*ph;
+  const ys2 = v => top+ph+gap + ph - (v-imin)/(imax-imin)*ph;
+  let s='';
+  if (opts.policy){ const a = ys.indexOf(String(opts.policy.from)), b = ys.indexOf(String(opts.policy.to)); if(a>=0&&b>=0){ s += `<rect x="${(x(a)-bw/2-3).toFixed(1)}" y="${top}" width="${(x(b)-x(a)+bw+6).toFixed(1)}" height="${(H-top-26).toFixed(1)}" fill="var(--s4)" opacity=".13"/><text x="${((x(a)+x(b))/2).toFixed(1)}" y="${(top+ph+gap-4).toFixed(1)}" font-size="9" text-anchor="middle" fill="var(--fg-2)">${esc(opts.policy.label)}</text>`; } }
+  s += `<line x1="${L}" x2="${W-R}" y1="${ys1(0).toFixed(1)}" y2="${ys1(0).toFixed(1)}" stroke="var(--line)"/>`;
+  ys.forEach((y,i)=>{ const v=sales[y]; if(v==null) return; s += `<rect x="${(x(i)-bw/2).toFixed(1)}" y="${ys1(v).toFixed(1)}" width="${bw.toFixed(1)}" height="${(ys1(0)-ys1(v)).toFixed(1)}" rx="3" fill="var(--s1)"><title>${y}: ${v.toLocaleString()}</title></rect>`; if(i===ys.length-1||i===0||v===smax) s += `<text x="${x(i).toFixed(1)}" y="${(ys1(v)-3).toFixed(1)}" font-size="9" text-anchor="middle" fill="var(--fg-2)">${v.toLocaleString()}</text>`; });
+  s += `<text x="${L-4}" y="${(top+8)}" font-size="9" text-anchor="end" fill="var(--muted)">${esc(opts.salesLabel||'판매')}</text>`;
+  const z = ys2(0); s += `<line x1="${L}" x2="${W-R}" y1="${z.toFixed(1)}" y2="${z.toFixed(1)}" stroke="var(--line)"/>`;
+  let d=''; ys.forEach((y,i)=>{ const v=ind[y]; if(v==null){ return; } d += (d?' L':'M')+`${x(i).toFixed(1)},${ys2(v).toFixed(1)}`; });
+  s += `<path d="${d}" fill="none" stroke="var(--s2)" stroke-width="2" stroke-linejoin="round"/>`;
+  ys.forEach((y,i)=>{ const v=ind[y]; if(v==null) return; s += `<circle cx="${x(i).toFixed(1)}" cy="${ys2(v).toFixed(1)}" r="3" fill="var(--s2)" stroke="var(--surface)" stroke-width="1.5"><title>${y}: ${v}</title></circle>`; });
+  s += `<text x="${L-4}" y="${(top+ph+gap+8)}" font-size="9" text-anchor="end" fill="var(--muted)">${esc(opts.indLabel||'지표')}</text>`;
+  ys.forEach((y,i)=>{ s += `<text x="${x(i).toFixed(1)}" y="${H-6}" font-size="9" text-anchor="middle" fill="var(--muted)">${y.slice(2)}</text>`; });
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" role="img" aria-label="판매와 지표 비교"><rect x="0" y="0" width="${W}" height="${H}" fill="var(--surface)"/>${s}</svg>`;
+}
+function miniLine(series, fmtv=v=>v, forecastFrom=null){
+  const ys=Object.keys(series).sort(); const W=520,H=120,L=8,R=8,top=16,bot=18;
+  const vals=ys.map(y=>series[y]); const mn=0, mx=Math.max(...vals);
+  const x=i=>L+i*(W-L-R)/(ys.length-1), y=v=>top+(H-top-bot)-(v-mn)/(mx-mn)*(H-top-bot);
+  let d='', dF=''; const fc = forecastFrom? ys.findIndex(yy=>+yy>=forecastFrom):-1;
+  ys.forEach((yy,i)=>{ const p=`${x(i).toFixed(1)},${y(vals[i]).toFixed(1)}`; if(fc>=0&&i>=fc){ if(!dF) dF='M'+`${x(i-1).toFixed(1)},${y(vals[i-1]).toFixed(1)}`; dF+=' L'+p; } else d+=(d?' L':'M')+p; });
+  let s=`<path d="${d}" fill="none" stroke="var(--s1)" stroke-width="2"/>`; if(dF) s+=`<path d="${dF}" fill="none" stroke="var(--s1)" stroke-width="2" stroke-dasharray="4 3"/>`;
+  ys.forEach((yy,i)=>{ if(i===0||i===ys.length-1||(fc>0&&i===fc-1)) s+=`<circle cx="${x(i).toFixed(1)}" cy="${y(vals[i]).toFixed(1)}" r="3" fill="var(--s1)"/><text x="${x(i).toFixed(1)}" y="${(y(vals[i])-6).toFixed(1)}" font-size="9" text-anchor="${i===0?'start':i===ys.length-1?'end':'middle'}" fill="var(--fg-2)">${fmtv(vals[i])}</text><text x="${x(i).toFixed(1)}" y="${H-4}" font-size="9" text-anchor="${i===0?'start':i===ys.length-1?'end':'middle'}" fill="var(--muted)">${yy}</text>`; });
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block">${s}</svg>`;
+}
+fetch('data/vn_trailer.json').then(r=>r.json()).then(V => {
+  $('#vn-summary').textContent = V.summary;
+  const kc = $('#kr-cards'); kc.innerHTML='';
+  const K = V.korea;
+  function statTable(st){ return `<table style="margin-top:8px"><thead><tr><th>비교</th><th class="num">상관계수 r</th><th class="num">n</th></tr></thead><tbody>${st.map(s=>`<tr><td>${esc(s.k)}${s.txt?`<div style="color:var(--muted);font-size:.78rem">${esc(s.txt)}</div>`:''}</td><td class="num">${s.r==null?'—':s.r.toFixed(2)}</td><td class="num">${s.n==null?'—':s.n}</td></tr>`).join('')}</tbody></table>`; }
+  function card(k, body){ const c=el('div','card'); c.innerHTML = `<h3>${esc(k.title)}</h3><p class="status" style="margin:4px 0 8px">${esc(k.note)}</p>${body}<div class="cols"><div><h4>해석</h4><p style="margin:0;font-size:.86rem">${esc(k.reading)}</p></div><div><h4>탄성치 (β) — 베트남 적용 출발점</h4><p style="margin:0;font-size:.86rem"><strong>${esc(k.elasticity.formula)}</strong></p><p style="margin:6px 0 0;font-size:.8rem;color:var(--fg-2)">${esc(k.elasticity.caveat)}</p></div></div>`; return c; }
+  kc.appendChild(card(K.dump, barLine(K.dump.sales, K.dump.indicator.v, {salesLabel:'대', indLabel:'%'}) + `<div class="status">막대: 25.5톤 덤프트럭 신규등록(대) · 선: ${esc(K.dump.indicator.name)} (${esc(K.dump.indicator.src)})</div>` + statTable(K.dump.stats)));
+  kc.appendChild(card(K.chassis, barLine(K.chassis.sales, K.chassis.indicator.v, {salesLabel:'대', indLabel:'만TEU', policy:K.chassis.policy}) + `<div class="status">막대: 컨테이너 섀시 신규등록(대) · 선: ${esc(K.chassis.indicator.name)} · 음영: ${esc(K.chassis.policy.label)}</div>` + statTable(K.chassis.stats)));
+  kc.appendChild(card(K.reefer, `<table><tbody>${K.reefer.points.map(p=>`<tr><td style="width:40%;color:var(--fg-2)">${esc(p.k)}</td><td>${esc(p.v)}</td></tr>`).join('')}</tbody></table>` + statTable(K.reefer.stats)));
+  // 베트남 지표
+  const tb = $('#vn-ind tbody'); tb.innerHTML='';
+  V.vietnam.indicators.forEach(x => { const tr=el('tr'); tr.innerHTML=`<td>${esc(x.k)}</td><td>${esc(x.v)}</td><td style="color:var(--muted);font-size:.78rem">${esc(x.src)}</td><td><span class="chip">${esc(x.use)}</span></td>`; tb.appendChild(tr); });
+  $('#vn-teu').innerHTML = miniLine(V.vietnam.teu, v=>v.toFixed(1));
+  $('#vn-gdppc').innerHTML = miniLine(V.vietnam.gdppc, v=>'$'+v.toLocaleString(), 2026);
+  // 계산기
+  const mm = $('#vn-models'); mm.innerHTML='';
+  V.models.forEach(m => {
+    const d = el('div','card'); d.style.marginTop='10px';
+    d.innerHTML = `<h3 style="font-size:.95rem">${esc(m.name)}</h3><p class="status" style="margin:2px 0 6px">${esc(m.explain)} · ${esc(m.driver_note)}</p>
+      <div class="calc">
+        <div><label for="${m.id}-base">기준값 (2025년 판매 또는 보유대수)</label><input id="${m.id}-base" type="number" value="100" min="0"></div>
+        <div><label for="${m.id}-drv">${esc(m.driver)} 전망 (%)</label><input id="${m.id}-drv" type="number" step="0.1" value="${m.driver_default}"></div>
+        <div><label for="${m.id}-beta">β (${esc(m.beta_range)})</label><input id="${m.id}-beta" type="number" step="0.1" value="${m.beta_default}"></div>
+        <div><label for="${m.id}-extra">${esc(m.extra_label)}</label><input id="${m.id}-extra" type="number" step="0.5" value="${m.extra}"></div>
+        <div><label for="${m.id}-yrs">목표 연도</label><select id="${m.id}-yrs"><option value="1">2026 (1년)</option><option value="2">2027 (2년)</option><option value="3">2028 (3년)</option></select></div>
+        <div class="out" id="${m.id}-out"></div>
+      </div>`;
+    mm.appendChild(d);
+    const calc = () => {
+      const base=+$(`#${m.id}-base`).value||0, drv=+$(`#${m.id}-drv`).value||0, beta=+$(`#${m.id}-beta`).value||0, extra=+$(`#${m.id}-extra`).value||0, n=+$(`#${m.id}-yrs`).value;
+      const rows = [['낮음', drv-2],['기본', drv],['높음', drv+2]].map(([lab,g]) => { const r = beta*g+extra; const t = base*Math.pow(1+r/100, n); return `<tr><td>${lab}</td><td class="num">${fmt(g,1)}%</td><td class="num">${fmt(r,1)}%</td><td class="num"><strong>${fmt(t, base>=1000?0:1)}</strong></td></tr>`; }).join('');
+      $(`#${m.id}-out`).innerHTML = `<table><thead><tr><th>시나리오</th><th class="num">${esc(m.driver)}</th><th class="num">연간 수요 증가율</th><th class="num">${2025+n}년 ${m.id==='chassis'?'보유대수':'수요'}</th></tr></thead><tbody>${rows}</tbody></table>` + (m.id==='chassis' ? `<div class="status">연간 신규 수요(교체 포함) ≈ 보유대수 × ${fmt(beta*drv+extra,1)}% = <strong>${fmt(base*(beta*drv+extra)/100, base>=1000?0:1)}대/년</strong> (기본 시나리오)</div>` : '');
+    };
+    ['base','drv','beta','extra','yrs'].forEach(k => $(`#${m.id}-${k}`).addEventListener('input', calc)); calc();
+  });
+  const cv = $('#vn-caveats'); cv.innerHTML = V.caveats.map(c=>`<li>${esc(c)}</li>`).join('');
+  const sr = $('#vn-sources'); sr.innerHTML=''; V.sources.forEach(s => { const a=el('a',null,esc(s.t)); a.href=s.u; a.target='_blank'; a.rel='noopener'; sr.appendChild(a); });
+}).catch(e => { console.error(e); $('#vn-summary').textContent = '특장차 데이터(data/vn_trailer.json)를 불러오지 못했습니다.'; });
+
+/* ---------- 저장소 (db) ---------- */
+(async function(){
+  const setStatus = (s) => ['#db-status-p','#db-status-c','#db-status-t'].forEach(id => { $(id).textContent = s; });
+  const lists = {products: $('#user-products'), companies: $('#user-companies'), countries: $('#user-countries')};
+  Object.values(lists).forEach(l => l.innerHTML = '<div class="empty">저장소에 연결하면 등록한 항목이 여기에 표시됩니다.</div>');
+  let db=null, user=null;
+  try { [db, user] = await Promise.all([window.claude?.use ? claude.use('db') : null, window.claude?.use ? claude.use('user') : null]); } catch(e){ db=null; }
+  if (!db){ setStatus('저장 기능을 사용할 수 없습니다 (로그인 필요). 이 페이지를 claude.ai에서 열면 등록이 가능합니다.'); ['#p-btn','#c-btn','#t-btn'].forEach(id=>$(id).disabled=true); return; }
+  let canWrite = true; try { const cw = user && await user.can('data.write'); if (cw===false) canWrite=false; } catch(e){}
+  if (!canWrite){ setStatus('읽기 전용입니다. 기여자 이상 권한이 있어야 등록할 수 있습니다.'); ['#p-btn','#c-btn','#t-btn'].forEach(id=>$(id).disabled=true); }
+  else setStatus('');
+  function bind(col, listEl, render){
+    db.collection(col).orderBy('added','desc').limit(200).onSnapshot(snap => {
+      listEl.innerHTML='';
+      if (snap.empty){ listEl.innerHTML = `<div class="empty">아직 등록된 항목이 없습니다.</div>`; return; }
+      snap.docs.forEach(d => { const x = d.data(); const row = el('div','row'); row.innerHTML = render(x); if (canWrite){ const b = el('button','x','삭제'); b.type='button'; b.addEventListener('click', async () => { b.disabled=true; try { await db.collection(col).doc(d.id).delete(); } catch(e){ b.disabled=false; } }); row.appendChild(b); } listEl.appendChild(row); });
+    }, err => { listEl.innerHTML = `<div class="empty">목록을 불러오지 못했습니다 (${esc(err.code)}).</div>`; });
+  }
+  bind('products', lists.products, x => `<strong>${esc(x.name)}</strong>${x.group?`<span class="chip">${esc(x.group)}</span>`:''}${x.competitors?`<span style="color:var(--fg-2)">경쟁: ${esc(x.competitors)}</span>`:''}${x.note?`<span style="color:var(--muted)">${esc(x.note)}</span>`:''}`);
+  bind('companies', lists.companies, x => `<strong>${esc(x.name)}</strong>${x.country?`<span class="chip">${esc(x.country)}</span>`:''}${x.products?`<span style="color:var(--fg-2)">${esc(x.products)}</span>`:''}${x.note?`<span style="color:var(--muted)">${esc(x.note)}</span>`:''}`);
+  bind('countries', lists.countries, x => { const a = `<a href="#country" data-iso="${esc(x.iso3)}"><strong>${esc(x.name)}</strong></a><span class="chip">${esc(x.iso3)}</span>${x.note?`<span style="color:var(--muted)">${esc(x.note)}</span>`:''}`; return a; });
+  lists.countries.addEventListener('click', e => { const a = e.target.closest('a[data-iso]'); if(a){ e.preventDefault(); if (WB) select(a.dataset.iso); } });
+  async function submit(form, btn, col, body){
+    btn.disabled=true; try { await db.collection(col).add({...body, added: new Date().toISOString()}); form.reset(); } catch(e){ setStatus('저장하지 못했습니다: ' + (e.code||e.message)); } finally { btn.disabled=false; }
+  }
+  $('#f-prod').addEventListener('submit', e => { e.preventDefault(); const name=$('#p-name').value.trim(); if(!name) return; submit(e.target, $('#p-btn'), 'products', {name, group:$('#p-group').value.trim(), competitors:$('#p-comp').value.trim(), note:$('#p-note').value.trim()}); });
+  $('#f-co').addEventListener('submit', e => { e.preventDefault(); const name=$('#c-name').value.trim(); if(!name) return; submit(e.target, $('#c-btn'), 'companies', {name, country:$('#c-country').value.trim(), products:$('#c-prod').value.trim(), note:$('#c-note').value.trim()}); });
+  $('#f-cty').addEventListener('submit', e => { e.preventDefault(); if(!CUR) return; submit(e.target, $('#t-btn'), 'countries', {iso3: CUR.id, name: cname(CUR), note:$('#t-note').value.trim()}); });
+})();
+})();
+</script>
+
+</body>
+</html>
