@@ -149,6 +149,18 @@ button.btn:disabled{opacity:.5;cursor:default}
 .calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;align-items:end;margin-top:8px}
 .calc label{font-size:.76rem;color:var(--fg-2);display:block}
 .calc .out{grid-column:1/-1;background:var(--surface-2);border-radius:6px;padding:10px 12px;font-size:.9rem}
+/* 입력값 출처 표시: 자동(AI 조사) / 가정(AI 기본값) / 입력 필요 / 사용자 입력 */
+:root{--src-auto:#dbe9fb;--src-auto-b:#2a78d6;--src-assume:#fff1cc;--src-assume-b:#c98500;--src-need:#fde3e3;--src-need-b:#d03b3b;--src-user:#dcefe3;--src-user-b:#1f6f4a}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--src-auto:#17304f;--src-auto-b:#3987e5;--src-assume:#3d2f08;--src-assume-b:#eda100;--src-need:#44201f;--src-need-b:#e66767;--src-user:#1d3327;--src-user-b:#4fb37e} }
+:root[data-theme="dark"]{--src-auto:#17304f;--src-auto-b:#3987e5;--src-assume:#3d2f08;--src-assume-b:#eda100;--src-need:#44201f;--src-need-b:#e66767;--src-user:#1d3327;--src-user-b:#4fb37e}
+input.src-auto,select.src-auto{background:var(--src-auto);border-color:var(--src-auto-b)}
+input.src-assume,select.src-assume{background:var(--src-assume);border-color:var(--src-assume-b)}
+input.src-need{background:var(--src-need);border-color:var(--src-need-b);border-style:dashed}
+input.src-user,select.src-user{background:var(--src-user);border-color:var(--src-user-b)}
+.srcbadge{display:inline-block;font-size:.68rem;padding:0 6px;border-radius:999px;margin-left:4px;vertical-align:middle;border:1px solid}
+.srcbadge.auto{background:var(--src-auto);border-color:var(--src-auto-b)}.srcbadge.assume{background:var(--src-assume);border-color:var(--src-assume-b)}.srcbadge.need{background:var(--src-need);border-color:var(--src-need-b)}.srcbadge.user{background:var(--src-user);border-color:var(--src-user-b)}
+.srclegend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:.74rem;color:var(--fg-2);margin:6px 0 2px}
+.srclegend span i{display:inline-block;width:12px;height:12px;border-radius:3px;border:1px solid;vertical-align:-2px;margin-right:4px;font-style:normal}
 .links{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .links a{font-size:.8rem;padding:4px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--fg)}
 .links a:hover{background:var(--surface-2)}
@@ -258,6 +270,7 @@ dl.kv dt{color:var(--fg-2)}dl.kv dd{margin:0}
   <div class="links" id="quick"></div>
   <div id="cpanel" hidden>
     <div class="chead"><span class="big" id="c-name-big"></span><span class="m" id="c-meta"></span></div>
+    <div class="card" id="cexc" style="margin-top:12px"></div>
     <div class="ind" id="cind"></div>
 
     <div class="block grid g2">
@@ -271,6 +284,7 @@ dl.kv dt{color:var(--fg-2)}dl.kv dd{margin:0}
       <div class="card">
         <h3>판매목표 연동 계산기</h3>
         <p class="status" style="margin-top:4px">목표 증가율 = 탄성치(β) × 선택 지표 전망치. 건설기계 수요는 투자 사이클을 증폭하므로 β는 보통 1.5~2.5에서 시작하고, 자사 국가별 과거 판매 데이터로 회귀해 보정하는 것을 권장합니다.</p>
+        <div id="legend-k"></div>
         <div class="calc">
           <div><label for="k-base">기준연도 판매 (목표 연도 직전 해, 대수 또는 금액)</label><input id="k-base" type="number" value="100" min="0"></div>
           <div><label for="k-drv">연동 지표</label><select id="k-drv">
@@ -367,6 +381,17 @@ const $ = (s, r=document) => r.querySelector(s);
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fmt = (v, d=1) => (v == null || isNaN(v)) ? '—' : Number(v).toLocaleString('ko-KR', {maximumFractionDigits:d, minimumFractionDigits:0});
+
+/* ---------- 입력값 출처 표시 ---------- */
+const SRC_LABEL = {auto:'자동 (AI 조사값)', assume:'가정 (AI 기본값, 보정 권장)', need:'입력 필요 (사용자 조사)', user:'사용자 입력'};
+function markSrc(id, state, note){
+  const inp = document.getElementById(id); if(!inp) return;
+  inp.classList.remove('src-auto','src-assume','src-need','src-user'); inp.classList.add('src-'+state);
+  inp.dataset.src = state; inp.title = SRC_LABEL[state] + (note ? ' — '+note : '');
+  const lab = inp.closest('div')?.querySelector('label'); if (lab){ let b = lab.querySelector('.srcbadge'); if(!b){ b = document.createElement('span'); b.className='srcbadge'; lab.appendChild(b); } b.className='srcbadge '+state; b.textContent = {auto:'자동',assume:'가정',need:'입력',user:'사용자'}[state]; b.title = inp.title; }
+  if (!inp.dataset.srcBound && inp.tagName !== 'SELECT'){ inp.dataset.srcBound='1'; inp.addEventListener('input', () => { if (inp.dataset.src!=='user') markSrc(id, 'user', '직접 입력한 값'); }); }
+}
+function srcLegend(){ return `<div class="srclegend"><span><i style="background:var(--src-auto);border-color:var(--src-auto-b)"></i>자동: AI가 공개 통계에서 가져온 값(출처 표기)</span><span><i style="background:var(--src-assume);border-color:var(--src-assume-b)"></i>가정: AI 기본값·경험치, 보정 권장</span><span><i style="background:var(--src-need);border-color:var(--src-need-b)"></i>입력 필요: 공개 자료 없음, 사용자가 조사</span><span><i style="background:var(--src-user);border-color:var(--src-user-b)"></i>사용자 입력</span></div>`; }
 
 /* ---------- 탭 ---------- */
 const tabs = [...document.querySelectorAll('nav.tabs button')];
@@ -542,6 +567,10 @@ function initCountry(){
   // 가중치 UI
   const wg = $('#weights'); WEIGHTS.forEach(w => { const d = el('div'); d.innerHTML = `<label for="w-${w.k}">${esc(w.label)} <span id="wv-${w.k}" style="font-family:var(--mono)">${w.v}</span></label><input type="range" id="w-${w.k}" min="0" max="50" value="${w.v}">`; wg.appendChild(d); d.querySelector('input').addEventListener('input', e => { Wv[w.k]=+e.target.value; $('#wv-'+w.k).textContent=e.target.value; if(CUR) renderScore(CUR); }); });
   ['#k-base','#k-drv','#k-beta'].forEach(s => $(s).addEventListener('input', () => { if(CUR) renderCalc(CUR); }));
+  $('#legend-k').innerHTML = srcLegend();
+  markSrc('k-base','need','자사 해당국 판매 실적을 넣으세요 (기본 100은 지수 계산용)');
+  markSrc('k-drv','auto','World Bank·IMF 공개 데이터에서 자동 조회');
+  markSrc('k-beta','assume','업계 경험치 1.5~2.5의 중간값. 자사 과거 판매로 회귀 추정 권장');
   try { const last = localStorage.getItem('radar.country'); if (last && WB.countries.some(c=>c.id===last)) select(last, false); else select('IDN', false); } catch(e){ select('IDN', false); }
 }
 function select(iso, focusTab=true){
@@ -568,8 +597,103 @@ function select(iso, focusTab=true){
       ${pshow}<div class="why">${esc(c.why)}</div>`;
     box.appendChild(card);
   });
-  renderScore(ct); renderCalc(ct); renderLinks(ct);
+  renderScore(ct); renderCalc(ct); renderLinks(ct); renderExc(ct);
   if (focusTab) showTab('country');
+}
+/* ---------- 굴착기 판매·수입 (국가별) ---------- */
+let EXC=null;
+fetch('data/excavators.json').then(r=>r.json()).then(d => { EXC=d; if (CUR) renderExc(CUR); }).catch(e => console.error(e));
+function renderExc(ct){
+  const box = $('#cexc'); if(!box) return;
+  if (!EXC){ box.innerHTML = '<h3>굴착기 판매·수입</h3><div class="status">데이터 로딩 중</div>'; return; }
+  const iso = ct.id; const imp = EXC.imports[iso] || {}; const cnx = EXC.cn_exports[iso] || {}; const off = EXC.official[iso];
+  const ys = Object.keys(imp).sort(); const vals = {}; ys.forEach(y => vals[y] = imp[y].v);
+  const last = ys[ys.length-1];
+  let h = `<h3>굴착기 판매·수입 <span class="chip">${esc(cname(ct))}</span></h3>`;
+  h += `<div class="grid g2" style="margin-top:8px">`;
+  // 수입액
+  h += `<div><h4 style="margin:0 0 2px;font-size:.8rem;color:var(--fg-2)">크롤러 굴착기 수입액 (HS 842952, 백만 USD)</h4>`;
+  if (ys.length){ h += `<div class="v" style="font-size:1.3rem;font-weight:600">$${fmt(imp[last].v,0)}M <small style="font-size:.74rem;color:var(--muted);font-weight:400">${last}${last==='2025'?' (부분 연도 가능)':''}</small></div>` + spark(vals) +
+    `<div class="tscroll"><table style="margin-top:6px"><thead><tr><th>연도</th><th class="num">수입액 $M</th><th class="num">대수</th></tr></thead><tbody>${ys.map(y=>`<tr><td>${y}</td><td class="num">${fmt(imp[y].v,0)}</td><td class="num">${imp[y].ok ? fmt(imp[y].q,0)+(imp[y].est?'<span title="Comtrade 추정 수량" style="color:var(--muted)">*</span>':'') : '<span style="color:var(--muted)" title="대당 금액이 비정상 범위라 대수 신뢰도 낮음">—</span>'}</td></tr>`).join('')}</tbody></table></div>`; }
+  else h += `<div class="status">Comtrade 수입 보고 없음</div>`;
+  h += `</div>`;
+  // 중국 수출
+  h += `<div><h4 style="margin:0 0 2px;font-size:.8rem;color:var(--fg-2)">중국산 크롤러 굴착기 수입 (중국 세관 수출 기준, 대수)</h4>`;
+  const cy = Object.keys(cnx).sort();
+  if (cy.length){ const a=cnx[cy[0]], b=cnx[cy[cy.length-1]]; h += `<div class="v" style="font-size:1.3rem;font-weight:600">${fmt(b.q,0)}대 <small style="font-size:.74rem;color:var(--muted);font-weight:400">${cy[cy.length-1]}${cy.length>1 && a.q ? ` · 전년비 ${b.q>=a.q?'+':''}${fmt((b.q/a.q-1)*100,1)}%`:''}</small></div><table style="margin-top:6px"><thead><tr><th>연도</th><th class="num">대수</th><th class="num">금액 $M</th><th class="num">대당 $k</th></tr></thead><tbody>${cy.map(y=>`<tr><td>${y}</td><td class="num">${fmt(cnx[y].q,0)}</td><td class="num">${fmt(cnx[y].v,0)}</td><td class="num">${cnx[y].q?fmt(cnx[y].v*1000/cnx[y].q,0):'—'}</td></tr>`).join('')}</tbody></table><div class="status">중국 OEM 침투도와 저가 세그먼트 규모를 보여주는 지표. 중국은 세계 굴착기 수출의 최대 공급국이라 신흥국에서는 시장 전체 수요의 대용치로 쓸 수 있음.</div>`; }
+  else h += `<div class="status">중국 수출 기록 없음(2023~24)</div>`;
+  h += `</div></div>`;
+  // 공식 통계
+  if (off){ h += `<div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--line)"><h4 style="margin:0 0 2px;font-size:.8rem;color:var(--fg-2)">공식·협회 통계: ${esc(off.name)}</h4><div style="font-size:.9rem">${Object.entries(off.v).map(([k,v])=>`${esc(k)} <strong>${fmt(v,0)}</strong>${esc(off.unit)}`).join(' · ')} — ${esc(off.latest)}</div><div class="status">${esc(off.note)} · <a href="${esc(off.src)}" target="_blank" rel="noopener">출처</a></div></div>`; }
+  else h += `<div class="status" style="margin-top:8px">이 국가의 협회·공식 굴착기 판매 통계는 아직 수집되지 않았습니다. 관심 국가로 저장하면 월간 갱신 때 수집합니다.</div>`;
+  h += `<div class="status" style="margin-top:6px">출처: ${esc(EXC.source)} · 기준일 ${esc(EXC.fetched)} · *표시는 Comtrade 추정 수량. ${esc(EXC.note)}</div>`;
+  box.innerHTML = h;
+  renderBreaker(ct, imp, cnx, off);
+}
+/* ---------- 유압브레이커 시장 규모 추정 ---------- */
+const BRK_BENCH = [
+  {k:'한국·일본 (암반·도심 해체 많음)', nr:30, fr:25},
+  {k:'유럽 (소형 굴착기·해체·재활용)', nr:20, fr:18},
+  {k:'북미', nr:12, fr:10},
+  {k:'동남아·인도·중동 (인프라·채석)', nr:12, fr:10},
+  {k:'중남미·아프리카 광산국', nr:15, fr:12}
+];
+function regionBench(ct){ const r=(ct.region||''); if(['KOR','JPN'].includes(ct.id)) return BRK_BENCH[0]; if(/Europe/.test(r)) return BRK_BENCH[1]; if(/North America/.test(r)) return BRK_BENCH[2]; if(/Latin|Sub-Saharan/.test(r)) return BRK_BENCH[4]; return BRK_BENCH[3]; }
+function renderBreaker(ct, imp, cnx, off){
+  const box = $('#cexc');
+  // 판매 추정치: 공식 통계(최근) > Comtrade ok 대수(최근) > 중국 수출(최근)
+  let sales=null, salesSrc='';
+  if (off && off.v){ const ks=Object.keys(off.v); const last=ks[ks.length-1]; if (!/7M/.test(last)) { sales=off.v[last]; salesSrc=`${off.name} ${last}`; } }
+  if (sales==null){ const ys=Object.keys(imp).filter(y=>imp[y].ok && y!=='2025').sort(); if(ys.length){ const y=ys[ys.length-1]; sales=imp[y].q; salesSrc=`Comtrade 크롤러 굴착기 수입 ${y}${imp[y].est?' (추정 수량)':''}`; } }
+  if (sales==null){ const ys=Object.keys(cnx).sort(); if(ys.length){ const y=ys[ys.length-1]; sales=cnx[y].q; salesSrc=`중국산 수입 ${y} (하한값: 중국 외 브랜드 제외)`; } }
+  const bench = regionBench(ct);
+  let saved={}; try { saved = JSON.parse(localStorage.getItem('radar.brk.'+ct.id)||'{}'); } catch(e){}
+  const v = { sales: saved.sales ?? (sales||0), fleet: saved.fleetUser ? saved.fleet : Math.round((saved.sales ?? (sales||0))*10), nr: saved.nr ?? bench.nr, fr: saved.fr ?? bench.fr, life: saved.life ?? 6, share: saved.share ?? 10 };
+  if (saved.fleetUser) saved.fleet = v.fleet; else delete saved.fleet;
+  const sec = el('div'); sec.style.cssText='margin-top:12px;padding-top:10px;border-top:1px solid var(--line)';
+  sec.innerHTML = `<h3 style="font-size:.95rem">유압브레이커 시장 규모 추정</h3>
+    <p class="status" style="margin:2px 0 6px">로직: 연간 브레이커 수요 = 굴착기 신규 판매 × 신차 장착률 + 굴착기 보유대수 × 보유 장착률 ÷ 교체 주기. 장착률 기본값은 지역 경험치(${esc(bench.k)}: 신차 ${bench.nr}%, 보유 ${bench.fr}%)이며 자사 판매·점유율로 보정하세요. 입력값은 이 브라우저에 국가별로 기억됩니다.</p>
+    ${srcLegend()}
+    <div class="calc">
+      <div><label for="b-sales">굴착기 연간 판매 (대)</label><input id="b-sales" type="number" min="0" value="${v.sales}"><div class="status">${salesSrc ? '자동 입력: '+esc(salesSrc) : '공개 통계 없음 — 직접 입력'}</div></div>
+      <div><label for="b-fleet">굴착기 보유대수 (대)</label><input id="b-fleet" type="number" min="0" value="${v.fleet}"><div class="status">${saved.fleet!=null?'사용자 입력':'기본값: 판매 × 10년(평균 수명). 등록 통계가 있으면 교체'}</div></div>
+      <div><label for="b-nr">신차 장착률 (%)</label><input id="b-nr" type="number" min="0" max="100" step="1" value="${v.nr}"></div>
+      <div><label for="b-fr">보유 장비 장착률 (%)</label><input id="b-fr" type="number" min="0" max="100" step="1" value="${v.fr}"></div>
+      <div><label for="b-life">브레이커 교체 주기 (년)</label><input id="b-life" type="number" min="1" step="0.5" value="${v.life}"></div>
+      <div><label for="b-share">자사 목표 점유율 (%)</label><input id="b-share" type="number" min="0" max="100" step="1" value="${v.share}"></div>
+      <div class="out" id="b-out"></div>
+    </div>
+    <details style="margin-top:8px;font-size:.82rem;color:var(--fg-2)"><summary style="cursor:pointer">역산: 자사 판매와 점유율로 이 나라의 실제 장착률 추정</summary>
+      <div class="calc" style="margin-top:6px">
+        <div><label for="b-my">자사 연간 브레이커 판매 (대)</label><input id="b-my" type="number" min="0" value="${saved.my??''}" placeholder="예: 300"></div>
+        <div><label for="b-myshare">자사 시장 점유율 (%)</label><input id="b-myshare" type="number" min="0.1" max="100" step="0.5" value="${saved.myshare??''}" placeholder="예: 15"></div>
+        <div class="out" id="b-rev"></div>
+      </div></details>`;
+  box.appendChild(sec);
+  const calc = () => {
+    const s=+$('#b-sales').value||0, f=+$('#b-fleet').value||0, nr=+$('#b-nr').value||0, fr=+$('#b-fr').value||0, life=+$('#b-life').value||6, sh=+$('#b-share').value||0;
+    const newD = s*nr/100, rep = f*fr/100/life, tot = newD+rep, installed = f*fr/100;
+    $('#b-out').innerHTML = `연간 시장 ≈ <strong>${fmt(tot,0)}대</strong> (신차 동반 ${fmt(newD,0)} + 교체 ${fmt(rep,0)}) · 장착 브레이커 보유 ≈ ${fmt(installed,0)}대 · 자사 ${sh}% 점유 시 <strong>${fmt(tot*sh/100,0)}대/년</strong><br><span style="font-size:.78rem;color:var(--muted)">장착률 10%p 변화 = 연간 시장 약 ${fmt(s*0.1 + f*0.1/life,0)}대 변동. 미니굴착기 비중이 높은 시장은 소형 브레이커 수요가 대수를 키우고 단가를 낮춥니다.</span>`;
+    const my=+$('#b-my').value||0, ms=+$('#b-myshare').value||0;
+    if (my>0 && ms>0){ const mkt = my/(ms/100); const implied = (f>0||s>0) ? mkt/(s + f/life)*100 : null; $('#b-rev').innerHTML = `시장 규모 역산 ≈ <strong>${fmt(mkt,0)}대/년</strong> → 신차·보유 장착률을 같은 값으로 두면 약 <strong>${implied!=null?fmt(implied,1):'—'}%</strong> (판매 ${fmt(s,0)}대, 보유 ${fmt(f,0)}대, 교체 ${life}년 기준)`; }
+    else $('#b-rev').textContent = '자사 판매와 점유율을 넣으면 시장 규모와 장착률을 역산합니다.';
+    const isU = id => document.getElementById(id)?.dataset.src === 'user';
+    try { localStorage.setItem('radar.brk.'+ct.id, JSON.stringify({sales:s, fleet:f, nr, fr, life, share:sh, my: my||undefined, myshare: ms||undefined, fleetUser: $('#b-fleet').dataset.user==='1' || isU('b-fleet'), salesUser:isU('b-sales'), nrUser:isU('b-nr'), frUser:isU('b-fr'), lifeUser:isU('b-life'), shareUser:isU('b-share')})); } catch(e){}
+  };
+  // 출처 표시
+  markSrc('b-sales', saved.salesUser ? 'user' : (salesSrc ? 'auto' : 'need'), salesSrc || '공개 판매 통계 없음 — 현지 협회·딜러 자료로 입력');
+  markSrc('b-fleet', saved.fleetUser ? 'user' : 'assume', '판매 × 10년 가정. 등록 통계(예: 국토부 건설기계 등록현황)가 있으면 입력');
+  markSrc('b-nr', saved.nrUser ? 'user' : 'assume', '지역 경험치 — '+bench.k);
+  markSrc('b-fr', saved.frUser ? 'user' : 'assume', '지역 경험치 — '+bench.k);
+  markSrc('b-life', saved.lifeUser ? 'user' : 'assume', '브레이커 평균 교체 주기 경험치');
+  markSrc('b-share', saved.shareUser ? 'user' : 'need', '자사 목표 점유율');
+  markSrc('b-my', saved.my ? 'user' : 'need', '자사 내부 판매 실적');
+  markSrc('b-myshare', saved.myshare ? 'user' : 'need', '자사 추정 점유율');
+  if (saved.fleetUser) $('#b-fleet').dataset.user='1';
+  $('#b-fleet').addEventListener('input', e => { e.target.dataset.user='1'; });
+  $('#b-sales').addEventListener('input', () => { if ($('#b-fleet').dataset.user!=='1') $('#b-fleet').value = Math.round((+$('#b-sales').value||0)*10); });
+  ['b-sales','b-fleet','b-nr','b-fr','b-life','b-share','b-my','b-myshare'].forEach(id => $('#'+id).addEventListener('input', calc));
+  calc();
 }
 function groupPct(ct, k){
   const cs = CAT.filter(c => c.w===k); const ps=[];
@@ -676,7 +800,7 @@ fetch('data/vn_trailer.json').then(r=>r.json()).then(V => {
   $('#vn-teu').innerHTML = miniLine(V.vietnam.teu, v=>v.toFixed(1));
   $('#vn-gdppc').innerHTML = miniLine(V.vietnam.gdppc, v=>'$'+v.toLocaleString(), 2026);
   // 계산기
-  const mm = $('#vn-models'); mm.innerHTML='';
+  const mm = $('#vn-models'); mm.innerHTML = srcLegend();
   V.models.forEach(m => {
     const d = el('div','card'); d.style.marginTop='10px';
     d.innerHTML = `<h3 style="font-size:.95rem">${esc(m.name)}</h3><p class="status" style="margin:2px 0 6px">${esc(m.explain)} · ${esc(m.driver_note)}</p>
@@ -695,6 +819,10 @@ fetch('data/vn_trailer.json').then(r=>r.json()).then(V => {
       $(`#${m.id}-out`).innerHTML = `<table><thead><tr><th>시나리오</th><th class="num">${esc(m.driver)}</th><th class="num">연간 수요 증가율</th><th class="num">${2025+n}년 ${m.id==='chassis'?'보유대수':'수요'}</th></tr></thead><tbody>${rows}</tbody></table>` + (m.id==='chassis' ? `<div class="status">연간 신규 수요(교체 포함) ≈ 보유대수 × ${fmt(beta*drv+extra,1)}% = <strong>${fmt(base*(beta*drv+extra)/100, base>=1000?0:1)}대/년</strong> (기본 시나리오)</div>` : '');
     };
     ['base','drv','beta','extra','yrs'].forEach(k => $(`#${m.id}-${k}`).addEventListener('input', calc)); calc();
+    markSrc(`${m.id}-base`,'need','베트남 자사 판매 또는 시장 보유대수 — 공개 통계 없음');
+    markSrc(`${m.id}-drv`,'auto', m.driver_note);
+    markSrc(`${m.id}-beta`,'assume', '한국 2015~2025 분석에서 유도한 출발값: '+m.beta_range);
+    markSrc(`${m.id}-extra`,'assume', '제도·교체 효과는 경험치');
   });
   const cv = $('#vn-caveats'); cv.innerHTML = V.caveats.map(c=>`<li>${esc(c)}</li>`).join('');
   const sr = $('#vn-sources'); sr.innerHTML=''; V.sources.forEach(s => { const a=el('a',null,esc(s.t)); a.href=s.u; a.target='_blank'; a.rel='noopener'; sr.appendChild(a); });
