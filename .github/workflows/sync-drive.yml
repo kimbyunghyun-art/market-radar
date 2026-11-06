@@ -1,1 +1,44 @@
+name: Sync data from Google Drive
 
+# 예약 작업이 Google Drive 폴더(market-radar-data)에 올린 JSON을 받아 data/ 폴더에 커밋합니다.
+# - 매주 월요일 09:30 KST (주간 뉴스 작업 08:40 KST 이후)
+# - 매월 10일 10:30 KST (월간 갱신 작업 08:50 KST 이후)
+# - Actions 탭에서 "Run workflow"로 언제든 수동 실행 가능
+on:
+  schedule:
+    - cron: "30 0 * * 1"
+    - cron: "30 1 10 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-drive
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      DRIVE_FOLDER_ID: 19nDevi5YoSAQVeXfvFT8eJWsMVheGnmj
+      DRIVE_API_KEY: ${{ secrets.DRIVE_API_KEY }}   # 선택: 설정하지 않아도 동작
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download and validate JSON from Drive
+        id: sync
+        run: python scripts/sync_drive.py
+
+      - name: Commit and push if changed
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          git config user.name "market-radar-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/*.json
+          git commit -m "data: ${{ steps.sync.outputs.summary }}"
+          git push
