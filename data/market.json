@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02",
+  "updated": "2026-11-08",
   "cycle": "2026-10",
   "headline": "글로벌 건설기계 시장은 2025년 저점을 지나 2026년 완만한 회복 국면. 중국 굴착기(수출 주도)·북미·중남미·아프리카는 강세, 인도·중동·인도네시아 광산은 조정. 10월 하순 3분기 실적 시즌(Sandvik 10/22, Volvo 10/23, Epiroc 10/28, Cat·Komatsu 10/29)과 IMF 10월 WEO(10/13)가 다음 변곡점.",
   "kpis": [
@@ -1346,6 +1346,54 @@
   },
   "news": [
     {
+      "d": "2026-11-08",
+      "t": "Liebherr, 수소 휠로더 L 566 H 프로토타입 독일 브레머하펜 벌크 하역 현장 실증 착수(EU H2B 프로젝트, 풍력 전해 수소 충전소)",
+      "tag": "제품",
+      "u": "https://constructionbriefing.com/news/liebherr-begins-hydrogen-wheel-loader-trials-in-germany/8135928.article"
+    },
+    {
+      "d": "2026-11-06",
+      "t": "Epiroc, 프랑스 지하광산 부품·재제조 업체 Aramine 인수 합의(매출 약 €3,100만, 65명, 70여 개국) — 4Q 완료 예정, 애프터마켓 강화",
+      "tag": "기업",
+      "u": "https://im-mining.com/2026/11/06/epiroc-buys-aramine-as-it-looks-to-bolster-aftermarket-operations"
+    },
+    {
+      "d": "2026-11-06",
+      "t": "인도 FADA 10월 건설기계 소매 7,434대(+22.07%), FY27 누계 42,184대(+4.93%); JCB 점유 53.0%(전년 63.7%)로 하락",
+      "tag": "지역",
+      "u": "https://www.autocarpro.in/analysis-sales/wheeled-construction-equipment-retail-sales-rise-2207-percent-to-7434-units-in-october-fada-135780"
+    },
+    {
+      "d": "2026-11-06",
+      "t": "베트남 1~10월 공공투자 집행 783.9조동(연간 계획 69%, +19.8%), 10월 121.6조동(+23.7%); 외국인투자 $548.5억(+74%, 2009년 이후 최대)",
+      "tag": "지역",
+      "u": "https://en.nhandan.vn/viet-nam-witnesses-strong-growth-in-public-investment-over-the-past-10-months-post168746.html"
+    },
+    {
+      "d": "2026-11-06",
+      "t": "국토부, 원격제어 타워크레인 연내 법제화 추진 — 건설기계관리법에 '지능형 건설기계' 분류 신설, 내년 CO.AX 예산 585억원",
+      "tag": "지역",
+      "u": "https://news.bizwatch.co.kr/article/real_estate/2026/11/06/0052"
+    },
+    {
+      "d": "2026-11-03",
+      "t": "Zoomlion 3Q 매출 128.8억위안(+4.74%)·순이익 8.59억위안(-25.66%), 1~9월 매출 400.2억위안(+7.71%)·해외 비중 57.81%; 위안화 절상 환손실 9.64억위안",
+      "tag": "기업",
+      "u": "https://finance.jrj.com.cn/2026/11/03214059001307.shtml"
+    },
+    {
+      "d": "2026-10-30",
+      "t": "Hitachi CM, 2027년 4월 사명 변경(LANDCROS) 앞서 글로벌 브랜드 캠페인 개시 — 동남아·오세아니아·중남미 중심 'Solutions Beyond Machinery'",
+      "tag": "기업",
+      "u": "https://www.hitachicm.com/global/en/news/press-releases/2026/26-10-30/"
+    },
+    {
+      "d": "2026-10-30",
+      "t": "미국 데이터센터 9월 착공 $94억(18건, 8월 $258억에서 급감), 1~9월 누계 $1,358억·178건; 향후 6개월 파이프라인 $748억",
+      "tag": "지역",
+      "u": "https://news.constructconnect.com/november-2026-data-center-report-september-adds-9.4b-in-construction-starts-costs-continue-to-increase"
+    },
+    {
       "d": "2026-10-29",
       "t": "코마츠 2Q(7~9월) 매출 1조1,155억엔(+13.6%) 역대 최대·영업익 -1.2%, 연간 전망 상향(매출 4조4,500억엔)에도 주가 -9.3%; 광산 수요 전망 0~-5%로 하향",
       "tag": "기업",
@@ -1364,58 +1412,10 @@
       "u": "https://dealsite.co.kr/articles/171678"
     },
     {
-      "d": "2026-10-28",
-      "t": "Epiroc 3Q 수주 174.7억SEK(+15%, 유기 +12%)·영업이익률 20.3%, 칼마르 유압 어태치먼트 공장 현대화",
-      "tag": "기업",
-      "u": "https://www.finanznachrichten.de/nachrichten-2026-10/69959883-epiroc-aktiebolag-epiroc-interim-report-q3-2026-399.htm"
-    },
-    {
-      "d": "2026-10-26",
-      "t": "HD건설기계 3Q 매출 2조915억원·영업익 1,577억원(컨센서스 -6.6%), 환손실로 순이익 18억원; 건설기계 이익률 6.8% vs 엔진 14%",
-      "tag": "기업",
-      "u": "https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202610260142"
-    },
-    {
       "d": "2026-10-23",
       "t": "수산세보틱스, 정석현 수산그룹 회장 각자대표이사 선임 공시(김병현·정석현 각자대표 체제)",
       "tag": "자사",
       "u": "https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=709683"
-    },
-    {
-      "d": "2026-10-23",
-      "t": "Volvo CE 3Q 매출 199억SEK(+5%)·조정영업이익률 16.1%, 수주 +16%·인도 +8%; 유럽 회복, 중동 감소",
-      "tag": "기업",
-      "u": "https://www.worldpipelines.com/business-news/23102026/volvo-construction-equipment-delivers-improved-earnings/"
-    },
-    {
-      "d": "2026-10-22",
-      "t": "Sandvik 3Q 수주 369.5억SEK(유기 +17%)·조정 EBITA 이익률 22.5%(전년 19.0%)",
-      "tag": "기업",
-      "u": "https://www.inderes.se/releases/sandvik-interim-report-third-quarter-2026"
-    },
-    {
-      "d": "2026-10-14",
-      "t": "한국 8월 건설수주 15.7조원(-8.1%, 공공 +5.9%·민간 -13.0%), 건설기성 11.6조원(+7.4%) — 건산연 10월 동향",
-      "tag": "지역",
-      "u": "https://cerik.re.kr/material/prospect/3136"
-    },
-    {
-      "d": "2026-10-13",
-      "t": "중국 CCMA 9월 굴착기 22,717대(+14.4%), 수출 12,806대(+20.7%)·내수 +7.2%, 1~9월 214,274대(+23.1%)",
-      "tag": "제품",
-      "u": "https://www.mysteel.net/news/5144268-ccma-chinas-excavator-sales-climb-14-yoy-in-september"
-    },
-    {
-      "d": "2026-10-13",
-      "t": "볼보그룹코리아, 차세대 소형·중형 굴착기 5종(EC65·EW65·ECR90·EW150·EW170) 한국서 세계 최초 공개",
-      "tag": "제품",
-      "u": "https://www.hankyung.com/article/2026101379761"
-    },
-    {
-      "d": "2026-10-09",
-      "t": "Hitachi CM 자사주 매입(340억엔) 완료 공지",
-      "tag": "기업",
-      "u": "https://www.hitachicm.com/content/dam/hitachicm/global/en/pdf-news/press-releases/2026/20261009-HCM-Notice-E.pdf"
     }
   ],
   "sources": [
