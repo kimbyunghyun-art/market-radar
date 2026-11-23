@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-16",
+  "updated": "2026-11-23",
   "cycle": "2026-11",
   "headline": "3분기 실적 시즌 결과 글로벌 건설기계는 '매출 성장·마진 압박' 국면: Cat(+17%)·Volvo CE(유기 +12%)·Sandvik(+25%)·Epiroc(+10%)은 북미·유럽·광산 호조로 호실적, 코마츠는 분기 최대 매출에도 영업이익 -1.2%(관세·원가), 중국 3사는 환손실로 이익 감소. 중국 굴착기 1~10월 +22.0%(수출 +28.4%, 수출>내수), 일본 CEMA 11개월 연속 출하 증가, OHR 2026 글로벌 판매 +3% 전망. 자사는 10/23 정석현·김병현 각자대표 체제 전환, 3분기 보고서 11/16 전후 제출 예정.",
   "kpis": [
@@ -1422,6 +1422,66 @@
   },
   "news": [
     {
+      "d": "2026-11-23",
+      "t": "수산세보틱스 3분기 연결 매출 476억원(-9.6%)·영업이익 24억원(-41.8%, OPM 5.0%)·당기순손실 10억원 — 11/16 제출 분기보고서 기준",
+      "tag": "자사",
+      "u": "https://www.vegannews.co.kr/news/article.html?no=409638"
+    },
+    {
+      "d": "2026-11-21",
+      "t": "영국 TRA, 중국산 굴착기(11~80t) 반덤핑 '흡수 재심' 초기판정 — Sany 32.82→43.77%, LiuGong 20.09→43.23%, 기타 40.08→81.49% 상향 제안(JCB 요청, Cat 18.81% 유지)",
+      "tag": "제품",
+      "u": "https://www.constructionbriefing.com/news/uk-watchdog-proposes-even-higher-duty-on-chinese-excavators-of-up-to-8016/8137313.article"
+    },
+    {
+      "d": "2026-11-21",
+      "t": "HD건설기계 인도 1~9월 생산 6,405대(+26.3%)·2030년 연 13,000대 목표, 두산밥캣 북미 1~9월 매출 +7.3%·소형장비 생산 65,900대(+13.8%) — K-건설기계 생산·판매축 다변화",
+      "tag": "기업",
+      "u": "https://newsway.co.kr/news/view?ud=2026112016130789741"
+    },
+    {
+      "d": "2026-11-20",
+      "t": "중국 10월 굴착기 생산 32,472대(+2.7%, 전월비 +6.1%), 1~10월 370,320대(+20.0%) — 국가통계국",
+      "tag": "지역",
+      "u": "https://www.steelorbis.com/steel-news/latest-news/chinas-excavator-output-up-20-percent-in-january-october-2026-1492330.htm"
+    },
+    {
+      "d": "2026-11-20",
+      "t": "베트남 푸꾸옥, 2027 APEC 대비 인프라 확충 — LRT 17.59km(BOT, 약 9,000억동) 공사 중, 220kV 변전소·110kV 송전선 3건 가동(600MVA 이상), 컨벤션센터 내년 3월 준공",
+      "tag": "지역",
+      "u": "https://www.ajunews.com/view/20261119095148278"
+    },
+    {
+      "d": "2026-11-19",
+      "t": "볼보CE–Trimble, F시리즈 굴착기 Co-Pilot에 Earthworks 머신컨트롤 완전 내장 — 추가 캡 하드웨어 제거, 2027년 1Q 일부 기종부터 적용",
+      "tag": "제품",
+      "u": "https://www.constructionbriefing.com/news/volvo-ce-and-trimble-eliminate-extra-hardware-in-new-excavator-tie-up/8137196.article"
+    },
+    {
+      "d": "2026-11-19",
+      "t": "싼이, bauma CHINA 2026(11/23~27)서 AI 에이전트·피지컬 AI 로봇 플랫폼 첫 공개 — 운전실 없는 100t급 무인 광산트럭·무인 전동 롤러, 야외 전시 신모델 60%+·전동화 80%+",
+      "tag": "제품",
+      "u": "https://www.alphabiz.co.kr/news/articleView.html?idxno=199101"
+    },
+    {
+      "d": "2026-11-19",
+      "t": "모리타(Bronto 모회사), Magirus 소방 고가사다리·구조플랫폼 사업 €6,500만에 인수 — 독일 울름 1,650명, 2026 매출 약 €4억(+30%) 전망, 수주잔고 €7.8억",
+      "tag": "기업",
+      "u": "https://vertikal.net/en/news/story/49683/morita-acquires-magirus"
+    },
+    {
+      "d": "2026-11-17",
+      "t": "ICEMA: 인도 2Q FY27(7~9월) 건설기계 내수 29,289대(+23%), 토공 20,168대(+19%)·자재취급 +43% — FY27 내수 126,500~133,500대 전망, 하반기 수요 강세 예상",
+      "tag": "지역",
+      "u": "https://www.autocarpro.in/news/icema-projects-stronger-construction-equipment-demand-in-h2-fy27-135984"
+    },
+    {
+      "d": "2026-11-16",
+      "t": "캐터필러, 충돌경고(CWS)·충돌완화(CMS)·스마트카메라 인체감지를 2027년 신규 건설기계 대부분에 표준 장착 — VisionLink로 근접사고 영상·위치 분석 제공",
+      "tag": "기업",
+      "u": "https://prnewswire.com/news-releases/caterpillar-makes-advanced-safety-technologies-standard-on-construction-equipment-302940477.html"
+    },
+    {
       "d": "2026-11-16",
       "t": "전진건설로봇 3Q 매출 354.9억·영업익 56억…1~3Q 누적 매출 1,288억(+13%)·영업익 195억(OPM 15.1%), 순이익 164억",
       "tag": "기업",
@@ -1432,66 +1492,6 @@
       "t": "중국 Sinoboom, 작업높이 41·44m 전동 텔레스코픽 붐리프트 2종(TB39ERJ·TB42ERJ Plus HD) 추가…336V 배터리, 유럽·인도·동남아 판매 개시",
       "tag": "제품",
       "u": "https://vertikal.net/en/news/story/49659/sinoboom039s-big-electric-booms"
-    },
-    {
-      "d": "2026-11-13",
-      "t": "줌라이언, bauma CHINA 2026(상하이 11/24~27) AI·신에너지 장비 60여 종 출품 — 400t급 전동 굴착기 ZE4000GEL·휴머노이드 Z01, 고급 장비 절반이 신에너지, 유럽·동남아 인증 우핸들 모델",
-      "tag": "제품",
-      "u": "https://prnewswire.com/news-releases/zoomlion-to-showcase-ai-powered-equipment-and-robotics-at-bauma-china-2026-302938898.html"
-    },
-    {
-      "d": "2026-11-12",
-      "t": "코마츠(Komatsu America), Astec 도로건설장비 사업(Roadtec·Carlson 페이버·밀링) EV $7,500만 인수 합의 — 연환산 매출 약 $1.45억, 2027년 1Q 완료 예정",
-      "tag": "기업",
-      "u": "https://www.sec.gov/Archives/edgar/data/0000792987/000110465926126300/tm2629532d1_ex99-1.htm"
-    },
-    {
-      "d": "2026-11-12",
-      "t": "JLG, 이탈리아 체레아에 유럽 붐리프트 재생(리컨디셔닝) 센터 개설 — 2,500㎡, 600AJ·660SJ·800AJ·860SJ 4종 '신품 수준' 재생, 기계·엔진 각 2년 보증",
-      "tag": "제품",
-      "u": "https://vertikal.net/en/news/story/49646/jlg-opens-european-recon-plant"
-    },
-    {
-      "d": "2026-11-11",
-      "t": "Off-Highway Research: 남미 5개국(브라질·아르헨티나·칠레·콜롬비아·페루) 중국 브랜드 점유 2025년 22%(2021년 14%) — 모바일 크레인·대형 광산트럭 장악, 잔존가치·부품망은 과제",
-      "tag": "지역",
-      "u": "https://www.khl.com/news/chinese-gains-reshape-south-american-market/8136320.article"
-    },
-    {
-      "d": "2026-11-10",
-      "t": "HD건설기계, 북미 PSI에 데이터센터용 가스발전 엔진 롱블록 1,600억원(약 $1.09억) 2년 공급계약 — 10월 3,900억 이어 북미 누적 5,500억원, 군산 공장 1~3MWe 체계 구축",
-      "tag": "기업",
-      "u": "https://en.sedaily.com/business/2026/11/10/hd-construction-equipment-wins-another-109-million-power"
-    },
-    {
-      "d": "2026-11-09",
-      "t": "고베제강 Kobelco, CNH 건설기계 사업(CASE·New Holland CE·Eurocomach) 70% 인수해 JV 설립 — EV $10억, 현금 $7억, 3년 락업, 2027년 말 완료 예정",
-      "tag": "기업",
-      "u": "https://s205.q4cdn.com/962820841/files/doc_news/2026/Nov/09/20261109-PR-CNH-Announces-Agreement-JV-Construction-Equipment-Business-Kobelco.pdf"
-    },
-    {
-      "d": "2026-11-09",
-      "t": "중국 10월 굴착기 판매 20,225대(+11.8%), 내수 +12.2%·수출 +11.4%…1~10월 234,499대(+22.0%), 수출 비중 51%",
-      "tag": "지역",
-      "u": "https://www.steelorbis.com/steel-news/latest-news/chinas-excavator-sales-increase-by-22-percent-in-january-october-2026-1489138.htm"
-    },
-    {
-      "d": "2026-11-08",
-      "t": "CECE 콩그레스: Off-Highway Research \"2026 글로벌 건설기계 판매 +3%, 장기 정점 연 140~150만대\"…DLL 파이낸싱 파이프라인 +30%",
-      "tag": "지역",
-      "u": "https://thecea.org.uk/cea-news/market-forecasts-and-practical-innovation-bring-cece-congress-2026-to-a-close"
-    },
-    {
-      "d": "2026-11-06",
-      "t": "Epiroc, 프랑스 지하광산 부품·재제조 업체 Aramine 인수 합의(매출 약 €3,100만, 65명) — 4Q 완료, 애프터마켓 강화",
-      "tag": "기업",
-      "u": "https://im-mining.com/2026/11/06/epiroc-buys-aramine-as-it-looks-to-bolster-aftermarket-operations"
-    },
-    {
-      "d": "2026-10-23",
-      "t": "수산세보틱스, 정석현 수산그룹 회장 각자대표이사 선임 공시(김병현·정석현 각자대표 체제)…3분기 보고서 11/16 전후 제출 예정",
-      "tag": "자사",
-      "u": "https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=709683"
     }
   ],
   "sources": [
